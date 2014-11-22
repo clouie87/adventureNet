@@ -1,0 +1,255 @@
+
+<!doctype html>
+<html>
+<head>
+    <link type= "text/css" rel= "stylesheet" href="/styles/style.css"/>
+    <link rel="import" href="/bower_components/polymer/polymer.html"/>
+    <link rel="import" href="/bower_components/core-item/core-item.html"/>
+    <link rel="import" href="/bower_components/core-menu/core-menu.html"/>
+    <link rel="import" href="/bower_components/core-pages/core-pages.html"/>
+    <link rel="import" href="/bower_components/core-toolbar/core-toolbar.html"/>
+    <link rel="import" href="/bower_components/core-scaffold/core-scaffold.html"/>
+    <link rel="import" href="/bower_components/google-map/google-map.html"/>
+    <script src="/bower_components/platform/platform.js"></script>
+    <style>
+
+        body{
+            height: auto;
+            width: 100%;
+            background-color: #cccccc;
+        }
+
+        core-toolbar{
+            background-color: #9ebfbf;
+            height: 15%;
+            width: 100%;
+        }
+
+        h1{
+            color: white;
+            font-family: Avenir, Sans-serif;
+            font-size: 40pt;
+        }
+
+        h2{
+            color: white;
+            font-family: Avenir, Sans-serif;
+            font-size: 36pt;
+        }
+
+        p{
+            margin-top: 92px;
+            margin-left: 40px;
+            color: white;
+            font-family: Sans-serif;
+            font-size: 18px;
+            width: 300px;
+        }
+
+        #introContainer {
+            margin-top: 200px;
+            margin-left: -350px;
+            margin-right: 200px;
+            width: 850px;
+            float: left;
+        }
+
+        #introBox{
+            float: left;
+        }
+
+        #userContainer{
+
+            margin-right: 150px;
+            height: auto;
+            width: 300px;
+            float: right;
+
+        }
+        form{
+            height: 200px;
+            width: 100px;
+
+        }
+        #loginContainer{
+            margin-top: 250px;
+            margin-left: 200px;
+            margin-right: 10%;
+            height: auto;
+            width: 550px;
+            border: 3px solid #636363;
+            background-color: rgba(102,51,51, .3);
+        }
+
+        .login{
+            padding-left: 30px;
+            margin-top: 20px;
+            margin-right: 20px;
+            width: 470px;
+            height: 40px;
+            border: 3px solid white;
+            font-size: 24px;
+            background-color: rgba(102, 51,51,.3);
+            margin-left: 20px;
+        }
+        #shortlogin{
+            padding-left: 30px;
+            margin-top: 25px;
+            margin-right: 10px;
+            width: 370px;
+            height: 40px;
+            border: 3px solid white;
+            font-size: 24px;
+            background-color: rgba(102, 51,51,.3);
+            margin-left: 20px;
+            float: left;
+        }
+
+        #loginButton{
+            float: right;
+            margin-top: 27px;
+            margin-right: 30px;
+            width: 80px;
+            height: 40px;
+            border: 3px white solid;
+            background-color: #9ebfbf;
+            color: white;
+        }
+        text{
+            margin-left: 50px;
+            color: white;
+        }
+
+        #signupButton{
+            margin-top: 20px;
+            margin-right: 30px;
+            margin-left: 230px;
+            width: 100px;
+            height: 40px;
+            border: 3px white solid;
+            background-color: #9ebfbf;
+            color: white;
+        }
+
+        #signupContainer{
+            margin-top: 50px;
+            margin-left: 200px;
+            height: 270px;
+            width: 550px;
+            border: 3px solid #636363;
+            background-color: rgba(102,51,51, .3);
+        }
+        .shortloginBox{
+            width: 550px;
+        }
+
+        .checkbox{
+            margin-left: 20px;
+            margin-top: 25px;
+            color: white;
+            float: left;
+        }
+
+        .holder{
+            max-width:1150px;
+            margin: 0 auto;
+        }
+        #profileHeader{
+            margin-top: 30px;
+            width: 2200px;
+            float: right;
+        }
+        google-map {
+            display: block;
+            height: 350px;
+            width: 100%;
+        }
+    </style>
+
+    <title>app</title>
+
+</head>
+<body> <!--onload="getName()"-->
+
+<core-toolbar> <!--The top menu bar -->
+    <!--<core-pages selected="0">
+      <div>One</div>
+      <div>Two</div>
+      <div>Three</div>
+    </core-pages>-->
+    <core-icon-button icon="menu" on-tap="{{menuAction}}"></core-icon-button>
+    <div flex>Adventure Net</div>
+    <core-icon-button icon="more" on-tap="{{moreAction}}"></core-icon-button>
+
+    <core-menu selected="0" on-core-select="{{selectAction}}">
+        <core-item icon="search" label="Search"></core-item>
+    </core-menu>
+</core-toolbar>
+
+<div class="holder">
+    <div id="profileHeader">
+        <div id="map">
+            <google-map id="map" latitude="37.77493" longitude="-122.41942">
+
+            </google-map>
+        </div>
+    </div>
+
+
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+<script>
+    $(document).ready(function() {
+        console.log("ready");
+        $('#signupButton').click(function () {
+            window.location.href = "/page2.html";
+        });
+    });
+
+    function get_location(){
+        var located = window.navigator.geolocation.getCurrentPosition(
+                function show_map(position){
+                    console.log("position",JSON.stringify(position));
+                    var userlatitude = position.coords.latitude;
+                    var userlongitude = position.coords.longitude;
+                    var map = document.getElementById("map");
+                    map.setAttribute("latitude",userlatitude);
+                    map.setAttribute("longitude",userlongitude);
+                });
+        console.log("located",located);
+
+        document.addEventListener('click', function(e) {
+            var pages = document.querySelector('core-pages');
+            pages.selected = (pages.selected + 1) % pages.children.length;
+        });
+
+    }/*
+     function show_map(position){
+     var latitude = position.coords.latitude;
+     var longitude = position.coords.longitude;
+     var map = document.getElementById("map");
+     map.setAttribute("latitude",latitude);
+     map.setAttribute("longitude",longitude);
+     }*/
+    var position = {
+        "timestamp":1416443125278,
+        "coords":{
+            "speed":null,
+            "heading":null,
+            "altitudeAccuracy":null,
+            "accuracy":39,
+            "altitude":null,
+            "longitude":-60.196848,
+            "latitude":46.1427955
+        }
+    }
+    var doc = {
+        "getElementById":function(){
+            console.log("does stuff")
+        }
+    }
+    console.log(document);
+    get_location();
+</script>
+</body>
+</html>

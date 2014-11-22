@@ -1,0 +1,115 @@
+
+<!doctype html>
+<html>
+<head>
+    <link type= "text/css" rel= "stylesheet" href="/styles/style.css"/>
+    <link rel="import" href="/bower_components/polymer/polymer.html"/>
+    <link rel="import" href="/bower_components/core-item/core-item.html"/>
+    <link rel="import" href="/bower_components/core-menu/core-menu.html"/>
+    <link rel="import" href="/bower_components/core-pages/core-pages.html"/>
+    <link rel="import" href="/bower_components/core-toolbar/core-toolbar.html"/>
+    <link rel="import" href="/bower_components/core-scaffold/core-scaffold.html"/>
+    <link rel="import" href="/bower_components/google-map/google-map.html"/>
+    <script src="/bower_components/platform/platform.js"></script>
+    <style>
+        h1{
+            color: white;
+        }
+        body{
+            background-image: url(/styles/mountains%20copy.jpg);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-color: #cccccc;
+        }
+        google-map {
+            display: block;
+            height: 250px;
+            width: 250px;
+        }
+    </style>
+
+    <title>app</title>
+
+</head>
+<body> <!--onload="getName()"-->
+
+<core-toolbar> <!--The top menu bar -->
+    <!--<core-pages selected="0">
+      <div>One</div>
+      <div>Two</div>
+      <div>Three</div>
+    </core-pages>-->
+    <core-icon-button icon="menu" on-tap="{{menuAction}}"></core-icon-button>
+    <div flex>Adventure Net</div>
+    <core-icon-button icon="more" on-tap="{{moreAction}}"></core-icon-button>
+
+
+
+
+    <core-menu selected="0" on-core-select="{{selectAction}}">
+        <core-item icon="search" label="Search"></core-item>
+    </core-menu>
+</core-toolbar>
+
+<core-menu selected="0" on-core-select="{{selectAction}}">
+    <core-item icon="settings" label="Settings"></core-item>
+    <core-item icon="dialog" label="Dialog"></core-item>
+    <core-item icon="search" label="Search"></core-item>
+</core-menu>
+
+<div tool>Title</div>
+<div><h1>Welcome to Title of Social Network</h1>
+    <google-map id="map" latitude="37.77493" longitude="-122.41942">
+
+    </google-map>
+</div>
+
+
+<script>
+    function get_location(){
+        var located = window.navigator.geolocation.getCurrentPosition(
+                function show_map(position){
+                    console.log("position",JSON.stringify(position));
+                    var userlatitude = position.coords.latitude;
+                    var userlongitude = position.coords.longitude;
+                    var map = document.getElementById("map");
+                    map.setAttribute("latitude",userlatitude);
+                    map.setAttribute("longitude",userlongitude);
+                });
+        console.log("located",located);
+
+        document.addEventListener('click', function(e) {
+            var pages = document.querySelector('core-pages');
+            pages.selected = (pages.selected + 1) % pages.children.length;
+        });
+
+    }/*
+     function show_map(position){
+     var latitude = position.coords.latitude;
+     var longitude = position.coords.longitude;
+     var map = document.getElementById("map");
+     map.setAttribute("latitude",latitude);
+     map.setAttribute("longitude",longitude);
+     }*/
+    var position = {
+        "timestamp":1416443125278,
+        "coords":{
+            "speed":null,
+            "heading":null,
+            "altitudeAccuracy":null,
+            "accuracy":39,
+            "altitude":null,
+            "longitude":-60.196848,
+            "latitude":46.1427955
+        }
+    }
+    var doc = {
+        "getElementById":function(){
+            console.log("does stuff")
+        }
+    }
+    console.log(document);
+    get_location();
+</script>
+</body>
+</html>

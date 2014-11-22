@@ -2,109 +2,280 @@
 <!doctype html>
 <html>
 <head>
-  <link type= "text/css" rel= "stylesheet" href="styles/style.css" />
+<link type= "text/css" rel= "stylesheet" href="/styles/style.css"/>
+<link rel="import" href="/bower_components/polymer/polymer.html"/>
+<link rel="import" href="/bower_components/core-item/core-item.html"/>
+<link rel="import" href="/bower_components/core-menu/core-menu.html"/>
+<link rel="import" href="/bower_components/core-pages/core-pages.html"/>
+<link rel="import" href="/bower_components/core-toolbar/core-toolbar.html"/>
+<link rel="import" href="/bower_components/core-scaffold/core-scaffold.html"/>
+<link rel="import" href="/bower_components/google-map/google-map.html"/>
+<script src="/bower_components/platform/platform.js"></script>
+  <style>
 
+    body{
+      height: auto;
+      width: 100%;
+      background-image: url(/styles/mountains.png);
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-color: #cccccc;
+    }
 
-  <title>Socket.IO chat</title>
+    core-toolbar{
+      background-color: #9ebfbf;
+      height: 15%;
+      width: 100%;
+    }
+
+    h1{
+      color: white;
+      font-family: Avenir, Sans-serif;
+      font-size: 40pt;
+    }
+
+    h2{
+      color: white;
+      font-family: Avenir, Sans-serif;
+      font-size: 36pt;
+    }
+
+    p{
+      margin-top: 92px;
+      margin-left: 40px;
+      color: white;
+      font-family: Sans-serif;
+      font-size: 18px;
+      width: 300px;
+    }
+
+    #introContainer {
+      margin-top: 200px;
+      margin-left: -350px;
+      margin-right: 200px;
+      width: 850px;
+      float: left;
+    }
+
+    #introBox{
+      float: left;
+    }
+
+    #userContainer{
+
+      margin-right: 150px;
+      height: auto;
+      width: 300px;
+      float: right;
+
+    }
+    form{
+      height: 200px;
+      width: 100px;
+
+    }
+    #loginContainer{
+      margin-top: 250px;
+      margin-left: 200px;
+      margin-right: 10%;
+      height: auto;
+      width: 550px;
+      border: 3px solid #636363;
+      background-color: rgba(102,51,51, .3);
+    }
+
+    .login{
+      padding-left: 30px;
+      margin-top: 20px;
+      margin-right: 20px;
+      width: 470px;
+      height: 40px;
+      border: 3px solid white;
+      font-size: 24px;
+      background-color: rgba(102, 51,51,.3);
+      margin-left: 20px;
+    }
+    #shortlogin{
+      padding-left: 30px;
+      margin-top: 25px;
+      margin-right: 10px;
+      width: 370px;
+      height: 40px;
+      border: 3px solid white;
+      font-size: 24px;
+      background-color: rgba(102, 51,51,.3);
+      margin-left: 20px;
+      float: left;
+    }
+
+    #loginButton{
+      float: right;
+      margin-top: 27px;
+      margin-right: 30px;
+      width: 80px;
+      height: 40px;
+      border: 3px white solid;
+      background-color: #9ebfbf;
+      color: white;
+    }
+    text{
+      margin-left: 50px;
+      color: white;
+    }
+
+    #signupButton{
+      margin-top: 20px;
+      margin-right: 30px;
+      margin-left: 230px;
+      width: 100px;
+      height: 40px;
+      border: 3px white solid;
+      background-color: #9ebfbf;
+      color: white;
+    }
+
+    #signupContainer{
+      margin-top: 50px;
+      margin-left: 200px;
+      height: 270px;
+      width: 550px;
+      border: 3px solid #636363;
+      background-color: rgba(102,51,51, .3);
+    }
+    .shortloginBox{
+      width: 550px;
+    }
+
+    .checkbox{
+      margin-left: 20px;
+      margin-top: 25px;
+      color: white;
+      float: left;
+    }
+
+    .holder{
+      max-width:1150px;
+      margin: 0 auto;
+    }
+    google-map {
+      margin-top: 0;
+      display: block;
+      height: 250px;
+      width: 250px;
+    }
+  </style>
+
+<title>app</title>
 
 </head>
-<script src="scripts/script.js" type="text/JavaScript"></script>
-
-
 <body> <!--onload="getName()"-->
-<header>
-  <h2>Adventure Chat</h2>
-</header>
 
-<div id = container>
-  <div id="users">
-    <p> Users</p>
-    <ul id="user"> </ul>
+<core-toolbar> <!--The top menu bar -->
+  <!--<core-pages selected="0">
+    <div>One</div>
+    <div>Two</div>
+    <div>Three</div>
+  </core-pages>-->
+  <core-icon-button icon="menu" on-tap="{{menuAction}}"></core-icon-button>
+  <div flex>Adventure Net</div>
+  <core-icon-button icon="more" on-tap="{{moreAction}}"></core-icon-button>
+
+  <core-menu selected="0" on-core-select="{{selectAction}}">
+  <core-item icon="search" label="Search"></core-item>
+  </core-menu>
+</core-toolbar>
+
+<div class="holder">
+<div id="introContainer">
+  <div><h1 id="title">Title of Social Network</h1>
+    <h2 id="introBox">Get Connected to your friends,or <br>
+    others that have similar interests as you!
+    Find the best places to explore, and the best people to explore them with!</h2>
   </div>
-
-  <div id="rooms">
-    <p> Rooms</p>
-    <input type='button' value="create a new room"/>
-
-    <ul class = 'room'>
-      <!--<li><a href="/room1.html">Find a Partner</a></li>
-      <li> <a href="/room2.html">Find Equipment</a></li>
-      <li><a href="/room3.html">Find a Ride</a></li> -->
-      <li><input type="button" id= "newPartner" class= 'roomButton' value="Find a Partner" /></li>
-      <li><input type="button" id="equipment" class= 'roomButton' value="Find Equipment" /> </li>
-      <li><input type="button" id="carShare" class= 'roomButton' value = "Find a Ride" /></li>
-    </ul>
-  </div>
-
-<div id="messageBox">
-  <section>
-    <ul id="messages"></ul>
-  </section>
-  <section id="form">
-    <form action="">
-      <input id="m" autocomplete="off" placeholder="Talk to me..." /><button>Send</button>
+</div>
+<div id="userContainer">
+  <div id="loginContainer">
+    <form>
+      <input type="text" id="login" class="login" placeholder="Email Address" value=""/>
+      <div class="shortloginBox">
+      <input type="button" id="loginButton"  value="Login" />
+      <input type="text" id="shortlogin" class="input" placeholder="Password" value=""/>
+      </div>
+      <input type="checkbox" class="checkbox" value="" /><p>Keep me logged in</p>
     </form>
-  </section>
   </div>
 </div>
 
-<script src="scripts/script.js" type="text/JavaScript"></script>
-<script src="/socket.io/socket.io.js"></script>
+<div id="userContainer">
+  <div id="signupContainer">
+    <form>
+      <input type="text" class="login" placeholder="User Name" value=""/>
+      <input type="text" class="login" placeholder="Email Address" value=""/>
+      <input type="text" class="login" placeholder="Password" value=""/>
+      <input type="button" id="signupButton" value="Join" />
+    </form>
+  </div>
+</div>
+</div>
+
+
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
 <script>
-  var socket = io();
-
-  var name = "";
-
-  var room = io.connect('/room');
-  $('.roomButton').click(function(){
-    var roomName = $(this).val(); //create a selector on the value name in the input so onclick we
-    socket.emit('switchRoom', roomName);
-  }); // this means we check the current selected element (so this case we are getting the value which was defined in the input tag)
-
-  socket.on('connect', function(){// listen for when someone is connected to the server the users nickname
-    name = prompt('What is your name?');
-    socket.emit('join', name); //notifies the server of new user
+  $(document).ready(function() {
+    console.log("ready");
+    $('#loginButton').click(function () {
+      window.location.href = "/profile.html";
+    });
+    $('#signupButton').click(function () {
+      window.location.href = "/page2.html";
+    });
   });
 
-  $('form').submit(function(){
-    var date = new Date(); // this is a construction
-    console.log("date is " + date); // tells me what i'm looking at
-    if(date.getMinutes() < 10){ // because if the time was 1:02 it would return 1:2 I created an if/else to add in proper display!
-      date = date.getHours() + ":0" + date.getMinutes();
-    }else{
-      date = date.getHours() + ":" + date.getMinutes();
-    };
-    socket.emit('chat message', name+ " " + date + ": " + $('#m').val());
-    var msg = $('#m').val();
-    $('#m').val(''); // this is to clear the msg bar
-    return false;
-  });
-  socket.on('chat message', function(msg) {
-    $('#messages').append($('<li>').text(msg));//['name']+ " (" + msg["date"] + "): " + msg['msg']));// submits msgs into the box and puts them below previous statements.
-    $('#messages').animate({
-      scrollTop: $('#messages').height()
-    }, "slow"); // need to find out how to scroll bottom (hint: its not scrollBottom)
-    console.log(msg);
-  });
-  socket.on('username', function(username){
-    $('#user').html(" "); //this clears the html in the user element and reloads :)
-    for(i = username.length; i > -1; i--) {
-      $('#user').append($('<div>').text(username[i]));
-      //socket.emit('username', username[i]);
-    };
-  });
-  socket.on('history', function(msgs){
-    $('#messages').html(" ");
-    if (msgs === null){
-      return false;
-    };
-    for(i = msgs.length; i > -1; i--) {
-      $('#messages').append($('<li>').text(msgs[i]));
-    };
-  });
+  function get_location(){
+    var located = window.navigator.geolocation.getCurrentPosition(
+      function show_map(position){
+        console.log("position",JSON.stringify(position));
+        var userlatitude = position.coords.latitude;
+        var userlongitude = position.coords.longitude;
+        var map = document.getElementById("map");
+        map.setAttribute("latitude",userlatitude);
+        map.setAttribute("longitude",userlongitude);
+      });
+    console.log("located",located);
+
+    document.addEventListener('click', function(e) {
+      var pages = document.querySelector('core-pages');
+      pages.selected = (pages.selected + 1) % pages.children.length;
+    });
+
+  }/*
+  function show_map(position){
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    var map = document.getElementById("map");
+    map.setAttribute("latitude",latitude);
+    map.setAttribute("longitude",longitude);
+  }*/
+  var position = {
+    "timestamp":1416443125278,
+    "coords":{
+      "speed":null,
+      "heading":null,
+      "altitudeAccuracy":null,
+      "accuracy":39,
+      "altitude":null,
+      "longitude":-60.196848,
+      "latitude":46.1427955
+    }
+  }
+  var doc = {
+    "getElementById":function(){
+      console.log("does stuff")
+    }
+  }
+  console.log(document);
+  get_location();
 </script>
-
 </body>
 </html>

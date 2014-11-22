@@ -1,0 +1,13 @@
+{
+  "name": "web-animations-next",
+  "homepage": "https://github.com/web-animations/web-animations-next",
+  "_release": "24face070f",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "24face070ff6f96afb0cbc2e40b0d78c3ef93e27"
+  },
+  "_source": "git://github.com/web-animations/web-animations-next.git",
+  "_target": "master",
+  "_originalSource": "web-animations/web-animations-next"
+}
