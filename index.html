@@ -59,13 +59,13 @@
   </div>
 
   <div horizontal layout flex three>
-    <div id="userContainer" flex self-stretch>
+    <div id="userContainer" vertical layout flex two>
       <div id="buttons" horizontal layout flex center-justified>
         <paper-button id="logInButton" flex>Login</paper-button>
         <paper-button id="signUpButton" flex>Signup</paper-button>
       </div>
-      <div vertical layout flex></div>
-      <div id="loginContainer" self-stretch horizontal center-justified>
+      <div flex one></div>
+      <div id="loginContainer" self-stretch vertical layout center-justified>
         <form vertical layout self-stretch>
 
           <paper-input-decorator block floatingLabel label="Email Address">
@@ -73,31 +73,33 @@
           </paper-input-decorator>
 
 
-        <paper-input-decorator block floatingLabel label="Username">
-          <textarea></textarea>
-        </paper-input-decorator>
+          <paper-input-decorator block floatingLabel label="Password">
+            <textarea></textarea>
+          </paper-input-decorator>
 
 
-        <paper-input-decorator block id="username" floatingLabel label="Username">
-          <textarea class="userInfo"></textarea>
-        </paper-input-decorator>
+          <paper-input-decorator block id="username" floatingLabel label="Confirm Password">
+            <textarea class="userInfo"></textarea>
+          </paper-input-decorator>
 
           <!--<span><input is="core-input" type="text" class="login" label="Password" value=""/></span>-->
 
-        <div id="stayLogin" horizontal layout>
-          <paper-checkbox horizontal layout center></paper-checkbox>
-          <p vertical layout start>Keep me logged in</p>
-        </div>
-        <div horizontal layout flex one></div>
+          <div id="stayLogin" horizontal layout>
+            <paper-checkbox horizontal layout center></paper-checkbox>
+            <p vertical layout start>Keep me logged in</p>
+          </div>
 
-        <div horizontal layout flex one center-justified center>
-          <paper-button id="signInButton">Login</paper-button>
-          <paper-button id="joinButton">Join</paper-button>
-        </div>
+          <div horizontal layout flex one></div>
         </form>
-  </div>
+      </div>
+      <div horizontal layout flex one self-stretch></div>
+      <div horizontal layout flex one center-justified self-center>
+        <paper-button id="signInButton">Login</paper-button>
+        <paper-button id="joinButton">Join</paper-button>
+      </div>
+      <div horizontal layout flex one self-stretch></div>
     </div>
-    <div class="dividerTwo" flex one></div>
+    <div class="divider" flex one></div>
   </div>
 </div>
 
