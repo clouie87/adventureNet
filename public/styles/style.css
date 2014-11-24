@@ -1,3 +1,8 @@
+@font-face {
+    font-family: awesome;
+    src: url('/styles/font-awesome-4.2.0/fonts/fontawesome-webfont.ttf') format('truetype');
+}
+
 body{
     height: auto;
     width: 100%;
@@ -8,62 +13,124 @@ body{
 }
 
 core-toolbar{
-    background-color: #9ebfbf;
+    background-color: rgba(0, 191, 165, .5);
     height: 7%;
     width: 100%;
 }
 
 h1{
     color: white;
-    font-family: Avenir, Sans-serif;
-    font-size: 40pt;
+    font-family: 'Raleway', sans-serif;
+    font-size:60pt;
+    float: left;
 }
 
 h2{
     color: white;
-    font-family: Avenir, Sans-serif;
-    font-size: 36pt;
+    font-family: 'Raleway', sans-serif;
+    font-weight: lighter;
+    font-size: 42pt;
 }
 
 #buttons{
     margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
-/*p{
-    margin-top: 92px;
-    margin-left: 40px;
+p{
+    margin-left: 2%;
     color: white;
-    font-family: Sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 18px;
-    width: 300px;
-}*/
-
-/*#introContainer {
-    margin-top: 200px;
-    margin-left: -350px;
-    margin-right: 200px;
-    width: 850px;
-    float: left;
 }
-
-#introBox{
-    float: left;
-}*/
 
 #userContainer{
     border: 3px solid #636363;
-    background-color: rgba(102,51,51, .3);
+    background-color: rgba(102,51,51, .5);
+}
+form{
+    margin-left: 10%;
+    width: 80%;
+    height: 100%;
 }
 
-/*#loginContainer{
-    margin-top: 250px;
-    margin-left: 200px;
-    margin-right: 10%;
-    height: auto;
-    width: 550px;
-    border: 3px solid #636363;
-    background-color: rgba(102,51,51, .3);
-}*/
+textarea{
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    font-size: 18px;
+}
+
+paper-input-decorator /deep/ .label-text,
+paper-input-decorator /deep/ .error {
+    /* inline label,  floating label, error message and error icon color when the input is unfocused */
+    color: #A7FFEB;
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+}
+
+paper-input-decorator /deep/ ::-webkit-input-placeholder {
+    /* platform specific rules for placeholder text */
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+}
+
+paper-input-decorator /deep/ .aria-label .label-text .floating-label{
+    color: #A7FFEB;
+}
+
+paper-input-decorator /deep/ ::-moz-placeholder {
+    color: white;
+}
+paper-input-decorator /deep/ :-ms-input-placeholder {
+    color: white;
+}
+
+paper-input-decorator /deep/ .unfocused-underline {
+    /* line color when the input is unfocused */
+    background-color: #A7FFEB;
+}
+
+paper-input-decorator[unfocused] /deep/ .floating-label .label-text {
+    /* floating label color when the input is focused */
+    background-color: #A7FFEB;
+}
+
+paper-input-decorator[focused] /deep/ .floating-label .label-text {
+    /* floating label color when the input is focused */
+    color: white;
+}
+
+paper-input-decorator /deep/ .focused-underline {
+    /* line color when the input is focused */
+    background-color: white;
+}
+
+paper-input-decorator /deep/ .floated-label .label-text {
+    /* line color when the input is focused */
+    background-color: transparent;
+    color: #A7FFEB;
+}
+
+paper-input-decorator /deep/ .cursor {
+    /* cursor color during the focus transition */
+    background-color: white;
+}
+
+paper-input-decorator.invalid[focused] /deep/ .floated-label .label-text,
+paper-input-decorator[focused] /deep/ .error {
+    /* floating label, error message nad error icon color when the input is invalid and focused */
+    color: white;
+}
+
+paper-input-decorator.invalid /deep/ .focused-underline,
+paper-input-decorator.invalid /deep/ .cursor {
+    /* line and cursor color when the input is invalid and focused */
+    background-color: salmon;
+}
+
+
 
 .login{
     height: 35%;
@@ -71,78 +138,32 @@ h2{
     width: 95%;
     font-size: 24px;
     color: white;
-    background-color: rgba(102, 51,51,.3);
+    background-color: rgba(102, 51, 51,.3);
 }
 
-paper-input{
-    width: 80%;
-    font-size: 24px;
-    color: white;
-    background-color: rgba(102, 51,51,.3);
+paper-checkbox{
+    margin-left: 3%;
 }
-.span-shadow {
-     display: inline-block;
-    position: relative;
-    margin-top: 40px;
-    margin-right: 20px;
-    width: 470px;
-    font-size: 24px;
-    margin-left: 20px;
-}
+
 paper-button{
     margin-left: 15%;
     margin-right: 15%;
-    border: 3px white solid;
-    color: white;
     width: 20%;
+    border: 3px #00BFA5 solid;
+    color: #00BFA5;
+    background-color: #A7FFEB;
 }
 
-/*
-#shortlogin{
-    padding-left: 30px;
-    margin-top: 25px;
-    margin-right: 10px;
-    width: 370px;
-    height: 40px;
-    border: 3px solid white;
-    font-size: 24px;
-    background-color: rgba(102, 51,51,.3);
-    margin-left: 20px;
-    float: left;
+#logInButton{
+    border: 3px #A7FFEB solid;
+    color: #A7FFEB;
+    background-color: #00BFA5;
 }
 
-#loginButton{
-    float: right;
-    margin-top: 27px;
-    margin-right: 30px;
-    width: 80px;
-    height: 40px;
-    border: 3px white solid;
-    background-color: #9ebfbf;
-    color: white;
-}
-
-#signupButton{
-    margin-top: 20px;
-    margin-right: 30px;
-    margin-left: 230px;
-    width: 100px;
-    height: 40px;
-    border: 3px white solid;
-    background-color: #9ebfbf;
-    color: white;
-}
-
-#signupContainer{
-    margin-top: 50px;
-    margin-left: 200px;
-    height: 270px;
-    width: 550px;
-    border: 3px solid #636363;
-    background-color: rgba(102,51,51, .3);
-}
-.shortloginBox{
-    width: 550px;
+#signUpButton{
+    border: 3px #00BFA5 solid;
+    color: #00BFA5;
+    background-color: #A7FFEB;
 }
 
 .checkbox{
@@ -150,15 +171,23 @@ paper-button{
     margin-top: 25px;
     color: white;
     float: left;
+    border: 1px solid white;
 }
 
-.holder{
-    max-width:1150px;
-    margin: 0 auto;
+paper-checkbox::shadow #checkbox.checked {
+    border-color: white;
 }
+paper-checkbox::shadow #ink {
+    color: #00BFA5;
+}
+
+paper-checkbox::shadow #checkbox {
+    border-color: white;
+}
+
 google-map {
     margin-top: 0;
     display: block;
     height: 250px;
     width: 250px;
-}*/
+}
