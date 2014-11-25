@@ -1,171 +1,46 @@
-
 <!doctype html>
 <html>
 <head>
-<link type= "text/css" rel= "stylesheet" href="/styles/style.css"/>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>app-router</title>
+  <script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
+  <!--<script src="/bower_components/platform/platform.js"></script>-->
+  <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+  <link rel="import" href="/bower_components/polymer/polymer.html"/>
+  <link rel="import" href="/bower_components/core-item/core-item.html"/>
+  <link rel="import" href="/bower_components/core-menu/core-menu.html"/>
+  <link rel="import" href="/bower_components/core-pages/core-pages.html"/>
+  <link rel="import" href="/bower_components/core-toolbar/core-toolbar.html"/>
 
-<link rel="import" href="/bower_components/polymer/polymer.html"/>
-<link rel="import" href="/bower_components/core-item/core-item.html"/>
-<link rel="import" href="/bower_components/core-menu/core-menu.html"/>
-<link rel="import" href="/bower_components/core-pages/core-pages.html"/>
-<link rel="import" href="/bower_components/core-toolbar/core-toolbar.html"/>
-<link rel="import" href="/bower_components/core-scaffold/core-scaffold.html"/>
-<link rel="import" href="/bower_components/core-input/core-input.html"/>
-<link rel="import" href="/bower_components/paper-button/paper-button.html"/>
-<link rel="import" href="/bower_components/paper-ripple/paper-ripple.html">
-<link rel="import" href="/bower_components/paper-checkbox/paper-checkbox.html">
-<link rel="import" href="/bower_components/paper-input/paper-input.html">
-<link rel="import" href="/bower_components/paper-input/paper-input-decorator.html">
-<link href='http://fonts.googleapis.com/css?family=Raleway:400,500,300' rel='stylesheet' type='text/css'>
-<script src="/bower_components/platform/platform.js"></script>
 
-<title>app</title>
-
+  <link rel="import" href="/bower_components/app-router/app-router.html">
 </head>
-<body fullbleed vertical layout>
-<div vertical layout style="height: 1%"></div>
+<body vertical layout fullbleed unresolved>
+
+
+<div vertical layout style="height: 1%; position: relative"></div>
 <div horizontal layout center-center>
-<core-toolbar horizontal layout center style="width: 99%">
-  <core-icon-button icon="menu" on-tap="{{menuAction}}"></core-icon-button>
-  <div flex>Adventure Net</div>
-  <core-icon-button icon="more" on-tap="{{moreAction}}"></core-icon-button>
+  <core-toolbar horizontal layout center style="width: 99%">
+    <core-icon-button icon="menu" on-tap="{{menuAction}}"></core-icon-button>
+    <div flex>Adventure Net</div>
+    <core-icon-button icon="more" on-tap="{{moreAction}}"></core-icon-button>
 
-  <core-menu selected="0" on-core-select="{{selectAction}}">
-  <core-item icon="search" label="Search"></core-item>
-  </core-menu>
-</core-toolbar>
+    <core-menu selected="0" on-core-select="{{selectAction}}">
+      <core-item icon="search" label="Search"></core-item>
+    </core-menu>
+  </core-toolbar>
 </div>
-
 <div vertical layout style="height: 20%; position: relative" class="buffer">
 </div>
 
-<div class="holder" horizontal layout>
-  <div class="divider" flex one>
-  </div>
-  <div id="introContainer" vertical layout flex three center>
-    <h1 horizontal layout start id="title">Title of Social Network</h1>
-    <h2 id="introBox">Get Connected to your friends, or
-    others that have similar interests
-    as you! Find the best places to
-    explore, and the best people to explore them with!</h2>
-  </div>
-  <div vertical layout style="height: 20%; position: relative" id="infoWelcome">
-    <h1 id="titleTwo">Welcome to Title of Social Network!!</h1>
-    <h2 id="introBoxTwo">Before we can connect you to all the coolest places and<br>
-    people, we will ned to know a little more about you!</h2>
-  </div>
+<app-router>
+  <app-route path="/" import="/pages/home-page.html"></app-route>
+  <app-route path="/demo/:pathArg1" import="/pages/demo-page.html"></app-route>
+  <app-route path="/notes" import="/pages/notes-page.html"></app-route>
+  <app-route path="*" import="/pages/not-found-page.html"></app-route>
+</app-router>
 
-  <div class="dividerTwo" flex one>
-  </div>
-
-  <div horizontal layout flex three>
-    <div id="userContainer" vertical layout flex two>
-      <div id="buttons" horizontal layout flex center-justified>
-        <paper-button id="logInButton" flex>Login</paper-button>
-        <paper-button id="signUpButton" flex>Signup</paper-button>
-      </div>
-      <div flex one></div>
-      <div id="loginContainer" self-stretch vertical layout center-justified>
-        <form vertical layout self-stretch>
-
-          <paper-input-decorator block floatingLabel label="Email Address">
-            <textarea></textarea>
-          </paper-input-decorator>
-
-
-          <paper-input-decorator block floatingLabel label="Password">
-            <textarea></textarea>
-          </paper-input-decorator>
-
-
-          <paper-input-decorator block id="username" floatingLabel label="Confirm Password">
-            <textarea class="userInfo"></textarea>
-          </paper-input-decorator>
-
-          <!--<span><input is="core-input" type="text" class="login" label="Password" value=""/></span>-->
-
-          <div id="stayLogin" horizontal layout>
-            <paper-checkbox horizontal layout center></paper-checkbox>
-            <p vertical layout start>Keep me logged in</p>
-          </div>
-
-          <div horizontal layout flex one></div>
-        </form>
-      </div>
-      <div horizontal layout flex one self-stretch></div>
-      <div horizontal layout flex one center-justified self-center>
-        <paper-button id="signInButton">Login</paper-button>
-        <paper-button id="joinButton">Join</paper-button>
-      </div>
-      <div horizontal layout flex one self-stretch></div>
-    </div>
-    <div class="divider" flex one></div>
-  </div>
-</div>
-
-<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-
-<script>
-  $(document).ready(function() {
-    console.log("ready");
-    $('#loginButton').click(function () {
-      window.location.href = "/profile.html";
-    });
-    $('#signupButton').click(function () {
-      window.location.href = "/page2.html";
-    });
-    $('#infoWelcome').hide();
-
-    $('#joinButton').hide();
-    $('#username').hide();
-    $('#signUpButton').click(function () {
-      $('#username').show();
-      $('#stayLogin').hide();
-      $('#joinButton').show();
-      $('#signInButton').hide();
-    });
-
-    $('#logInButton').click(function () {
-      $('#username').hide();
-      $('#loginContainer').show();
-      $('#stayLogin').show();
-      $('#signInButton').show();
-      $('#joinButton').hide();
-    });
-
-    $('#signInButton').click(function(){
-      //if email and password are correct
-      $('#introContainer').hide();
-      //to their profile
-      //else popup
-    });
-
-    $('#joinButton').click(function(){
-      //if email, username and password are valid send validation email...?
-      $('#introContainer').hide();
-      $('#infoWelcome').show();
-    });
-
-      var paperInput = CoreStyle.g.paperInput = CoreStyle.g.paperInput || {};
-
-      paperInput.labelColor = 'orange';
-      paperInput.cursorColor = '#A7FFEB';
-      paperInput.focusedColor = '#A7FFEB';
-      paperInput.invalidColor = '#d34336';
-
-
-    /*var label = CoreStyle.g.paperInput.labelColor;
-      console.log(label);
-      label.setAttribute('style', label.style + 'color: white');*/
-
-    /*var paperShadow = document.querySelector('form#loginContainer /deep/ paper-shadow[class=span-shadow] /deep/ ');
-      console.log(paperShadow);
-      paperShadow.setAttribute('style',paperShadow.style+'height');
-    var paperBox = document.querySelector('form#loginContainer /deep/ paper-shadow[class=span-shadow] /deep/ paper-input[class=inputBox] /deep/ paper-input-decorator[id=decorator] ::shadow');
-      console.log(paperBox);*/
-  });
-
-
-</script>
 </body>
 </html>

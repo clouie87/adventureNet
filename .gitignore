@@ -1,3 +1,5 @@
 /node_modules
 /public/bower_components
 /public/test.html
+
+public/pages/home-page.html
