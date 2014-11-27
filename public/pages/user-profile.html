@@ -1,7 +1,4 @@
 
-<!doctype html>
-<html>
-<head>
     <link type= "text/css" rel= "stylesheet" href="/styles/style.css"/>
     <link rel="import" href="/bower_components/polymer/polymer.html"/>
     <link rel="import" href="/bower_components/core-item/core-item.html"/>
@@ -10,15 +7,18 @@
     <link rel="import" href="/bower_components/core-toolbar/core-toolbar.html"/>
     <link rel="import" href="/bower_components/core-scaffold/core-scaffold.html"/>
     <link rel="import" href="/bower_components/google-map/google-map.html"/>
+    <link rel="import" href="/pages/elements/post-card.html"/>
+
     <script src="/bower_components/platform/platform.js"></script>
+
+<polymer-element name="user-profile" noscript>
+<template>
     <style>
 
-        body{
-            height: auto;
-            width: 100%;
-            background-color: #cccccc;
+        :host{
+            background-color: #004444;
+            height: 100%;
         }
-
         core-toolbar{
             background-color: #9ebfbf;
             height: 15%;
@@ -120,80 +120,41 @@
             color: white;
         }
 
-        #signupButton{
-            margin-top: 20px;
-            margin-right: 30px;
-            margin-left: 230px;
-            width: 100px;
-            height: 40px;
-            border: 3px white solid;
-            background-color: #9ebfbf;
-            color: white;
-        }
-
-        #signupContainer{
-            margin-top: 50px;
-            margin-left: 200px;
-            height: 270px;
-            width: 550px;
-            border: 3px solid #636363;
-            background-color: rgba(102,51,51, .3);
-        }
-        .shortloginBox{
-            width: 550px;
-        }
-
-        .checkbox{
-            margin-left: 20px;
-            margin-top: 25px;
-            color: white;
-            float: left;
-        }
-
-        .holder{
-            max-width:1150px;
-            margin: 0 auto;
-        }
-        #profileHeader{
-            margin-top: 30px;
-            width: 2200px;
-            float: right;
-        }
         google-map {
+            margin-top: -2%;
             display: block;
-            height: 350px;
+            height: 700px;
             width: 100%;
+        }
+        #profilePic{
+
         }
     </style>
 
-    <title>app</title>
 
-</head>
-<body> <!--onload="getName()"-->
+<div class="holderUser" vertical layout>
+        <div id="map" flex self-stretch four vertical layout style="height: 40%">
+            <!--<google-map id="map" latitude="37.77493" longitude="-122.41942">
 
-<core-toolbar> <!--The top menu bar -->
-    <!--<core-pages selected="0">
-      <div>One</div>
-      <div>Two</div>
-      <div>Three</div>
-    </core-pages>-->
-    <core-icon-button icon="menu" on-tap="{{menuAction}}"></core-icon-button>
-    <div flex>Adventure Net</div>
-    <core-icon-button icon="more" on-tap="{{moreAction}}"></core-icon-button>
+            </google-map> -->
 
-    <core-menu selected="0" on-core-select="{{selectAction}}">
-        <core-item icon="search" label="Search"></core-item>
-    </core-menu>
-</core-toolbar>
-
-<div class="holder">
-    <div id="profileHeader">
-        <div id="map">
-            <google-map id="map" latitude="37.77493" longitude="-122.41942">
-
-            </google-map>
+            <div id="profilePic" horizontal layout>
+                <post-card>
+                    <img width ='70' height ='70' src="../styles/mountains%20copy.jpg">
+                    <h2>ssldkj</h2>
+                    <p> Shosdf</p>
+                </post-card>
+                <!--<div horizontal layout flex one></div>-->
+                <!--<div flex two style="background-color: transparent">-->
+                    <!--<div flex horizontal center-center layout style=" background-color: white;width: 40%; height: 350px">-->
+                        <!--<paper-button style="width: 30%; height: 20%; background-color: purple">OnClick import photo</paper-button>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div flex four style="background-color: transparent"></div>-->
+            </div>
         </div>
-    </div>
+    <div vertical flex two>hey</div>
+</div>
 
 
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
@@ -201,9 +162,7 @@
 <script>
     $(document).ready(function() {
         console.log("ready");
-        $('#signupButton').click(function () {
-            window.location.href = "/page2.html";
-        });
+
     });
 
     function get_location(){
@@ -231,7 +190,7 @@
      map.setAttribute("latitude",latitude);
      map.setAttribute("longitude",longitude);
      }*/
-    var position = {
+    /*var position = {
         "timestamp":1416443125278,
         "coords":{
             "speed":null,
@@ -242,14 +201,15 @@
             "longitude":-60.196848,
             "latitude":46.1427955
         }
-    }
+    };*/
     var doc = {
         "getElementById":function(){
             console.log("does stuff")
         }
-    }
+    };
     console.log(document);
     get_location();
 </script>
-</body>
-</html>
+
+</template>
+</polymer-element>

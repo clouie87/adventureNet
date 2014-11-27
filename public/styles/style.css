@@ -12,6 +12,12 @@ body{
     background-color: #cccccc;
 }
 
+user-profile /deep/ .holderUser{
+    height: 100%;
+    background-color: transparent;
+
+}
+
 core-toolbar{
     background-color: rgba(0, 191, 165, .5);
     height: 7%;

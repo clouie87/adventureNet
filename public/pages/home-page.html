@@ -1,17 +1,19 @@
-<link type="text/css" rel="stylesheet" href="/styles/style.css" xmlns="http://www.w3.org/1999/html"/>
+    <link type="text/css" rel="stylesheet" href="/styles/style.css" xmlns="http://www.w3.org/1999/html"/>
     <link rel="import" href="/bower_components/polymer/polymer.html"/>
     <link rel="import" href="/bower_components/app-router/app-router.html"/>
     <link rel="import" href="/bower_components/core-item/core-item.html"/>
     <link rel="import" href="/bower_components/core-menu/core-menu.html"/>
     <link rel="import" href="/bower_components/core-pages/core-pages.html"/>
+    <link rel="import" href="/bower_components/core-image/core-image.html"/>
+    <link rel="import" href="/bower_components/core-icon-button/core-icon-button.html"/>
     <link rel="import" href="/bower_components/core-toolbar/core-toolbar.html"/>
     <link rel="import" href="/bower_components/core-scaffold/core-scaffold.html"/>
     <link rel="import" href="/bower_components/core-input/core-input.html"/>
     <link rel="import" href="/bower_components/paper-button/paper-button.html"/>
     <link rel="import" href="/bower_components/paper-ripple/paper-ripple.html">
-    <link rel="import" href="/bower_components/paper-checkbox/paper-checkbox.html">
-    <link rel="import" href="/bower_components/paper-input/paper-input.html">
-    <link rel="import" href="/bower_components/paper-input/paper-input-decorator.html">
+    <link rel="import" href="/bower_components/paper-checkbox/paper-checkbox.html"/>
+    <link rel="import" href="/bower_components/paper-input/paper-input.html"/>
+    <link rel="import" href="/bower_components/paper-input/paper-input-decorator.html"/>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,500,300' rel='stylesheet' type='text/css'>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
@@ -23,7 +25,7 @@
     src: url('/styles/font-awesome-4.2.0/fonts/fontawesome-webfont.ttf') format('truetype');
     }
 
-    body{
+    body {
     height: auto;
     width: 100%;
     background-image: url(/styles/mountains.png);
@@ -52,6 +54,7 @@
     font-size: 42pt;
     }
 
+
     #buttons{
     margin-top: 5%;
     margin-left: 10%;
@@ -74,6 +77,12 @@
     margin-top: 2%;
     margin-left: 10%;
     width: 80%;
+    }
+
+    #loginContainer{
+        font-family: 'Raleway', sans-serif;
+        color: white;
+        font-size: 20px;
     }
 
     textarea{
@@ -207,6 +216,7 @@
     }
 </style>
 
+
     <div class="holder" horizontal layout>
         <div class="divider" flex one>
         </div>
@@ -258,7 +268,7 @@
                 <div horizontal layout flex one self-stretch></div>
                 <div horizontal layout flex one center-justified self-center>
                     <paper-button id="signInButton" onclick="signIn()">Login</paper-button>
-                    <paper-button hidden id="joinButton" onclick="join()">Join</paper-button>
+                    <!--<a is="pushstate-anchor" href="/#/user-profile">--><paper-button hidden id="joinButton" onclick="join()">Join</paper-button>
                 </div>
                 <div horizontal layout flex one self-stretch></div>
             </div>
@@ -291,7 +301,22 @@
 
             var signIn = function () {
                 console.log('signIn clicked');
+                document.querySelector('app-router').go('/user-profile');
+
             };
+
+            var join = function () {
+                console.log('joined');
+
+            };
+
+            function validate() {
+                var decorator = document.querySelector('body /deep/ #paper1');
+                console.log("decorator", decorator);
+                var input = document.querySelector('body /deep/ #input1');
+                console.log("input", input);
+                decorator.isInvalid = !input.validity.valid;
+            }
                 /*
                         $('#stayLogin').hide();
                         $('#joinButton').show();

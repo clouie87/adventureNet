@@ -1,0 +1,22 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/post-service/post-service.html">
+<link rel="import" href="/pages/elements/post-card.html">
+
+<polymer-element name="post-list" attributes="show">
+    <template>
+        <style>
+            :host {
+                display: block;
+                width: 100%;
+            }
+            post-card {
+                margin-bottom: 30px;
+            }
+        </style>
+
+        <post-service id="service" posts="{{posts}}">
+
+
+        </post-service>
+    </template>
+</polymer-element>
