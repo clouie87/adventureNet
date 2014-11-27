@@ -45,13 +45,14 @@
                 font-size: 18px;
             }
 
-            paper-input-decorator /deep/ .label-text,
+            paper-input-decorator /deep/ .label-text
             paper-input-decorator /deep/ .error {
                 /* inline label,  floating label, error message and error icon color when the input is unfocused */
                 color: #A7FFEB;
                 font-family: 'Raleway', sans-serif;
                 font-size: 40px;
             }
+
             paper-input-decorator /deep/ .label-text,
             paper-input-decorator /deep/ .error {
                 /* inline label,  floating label, error message and error icon color when the input is unfocused */
@@ -133,86 +134,44 @@
 
             <form action ="">
 
-            <paper-input-decorator id="paper1" error= "Value must start with a number!" floatingLabel="Email Address">
-                <input id="input1" type = "email" is="core-input" pattern="^[0-9].*">
-            </paper-input-decorator>
-            <button type="submit" onclick="validate()" >Validate</button>
 
-            <paper-input-decorator id="paper2" error= "Please enter a valid email address!" floatingLabel="Email Address">
-                <input id="input2" type = "email" is="core-input" pattern="email">
-            </paper-input-decorator>
-            <button type="submit" onclick="validate2()" >Validate</button>
+                <!--<paper-input-decorator id="paper1" error= "Value must start with a number!" floatingLabel label="Email Address">-->
+                    <!--<input id="input1" type = "text" is="core-input" onblur="validate()" pattern="^[0-9].*">-->
+                <!--</paper-input-decorator>-->
+                <!--<input type="text" >-->
+
+                <!--<paper-input-decorator id="paper2" error= "Please enter a valid email address!" floatingLabel="Email Address">-->
+                    <!--<input id="input2" type ="text" is="core-input" onblur="validate2()" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">-->
+                <!--</paper-input-decorator>-->
+
+                <paper-input-decorator  floatingLabel label="Password">
+                    <input id="password" type ="text" is="core-input" value = "{{password}}">
+                </paper-input-decorator>
+
+
+                <paper-input-decorator id="username" floatingLabel label="Confirm Password" error= "Please enter a valid email address!">
+                    <input id="checkpswd" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">
+                </paper-input-decorator>
+
 
              </form>
        </div>
 
             <script>
 
-            function validate() {
-                var decorator = document.querySelector('body /deep/ #paper1');
-                console.log("decorator", decorator);
-                var input = document.querySelector('body /deep/ #input1');
-                console.log("input", input);
+                function confirm() {
+                    var checkpswd = document.querySelector('body /deep/ #checkpswd');
+                    console.log("confirmation", checkpswd);
 
-                decorator.isInvalid = !input.validity.valid;
-            }
+                    var valid = document.querySelector('body /deep/ #username');
+                    console.log("valid", valid);
 
-            function validate2() {
-                var decorator = document.querySelector('body /deep/ #paper2');
-                console.log("decorator", decorator);
-                var input = document.querySelector('body /deep/ #input2');
-                console.log("input", input);
-
-                decorator.isInvalid = !input.validity.valid;
-            }
-
-//            (function (exports) {
-//                function valOrFunction(val, arguments) {
-//                    if (typeof val == "function") {
-//                        return val.apply(arguments);
-//                    } else {
-//                        return val;
-//                    }
-//                }
-//
-//                var decorator = document.querySelector('body /deep/ #paper1');
-//                console.log("decorator", decorator);
-//                var input = document.querySelector('body /deep/ #input1');
-//                console.log("input", input);
-//
-//                function validate(input, options) {
-//
-//                    input.setCustomValidity(valOrFunction(options.defaultText, [input]));
-//                    function change() {
-//                        if (input.value === "") {
-//                            input.setCustomValidity(valOrFunction(options.emptyText, [input]));
-//                        } else {
-//                            input.setCustomValidity("");
-//                        }
-//                    }
-//
-//                        input.addEventListener("change", change);
-//
-//                    }
-//
-//                    exports.validate = validate;
-//
-//                validate(document.querySelector('body /deep/ #input1'), {
-//                    defaultText: "please enter an email address!",
-//                    emptyText: "please enter an email address!",
-//                })
-//
-//                    //decorator.isInvalid = !input.validity.valid;
-//            });
+                    valid.isInvalid = !checkpswd.validity.valid;
+                }
 
             </script>
 
-        <!--<template is="auto-binding">-->
-            <!--<paper-input-decorator id="paper2" floatingLabel="Email Address" error="Value must start with a number!" isInvalid="{{$.input2.validity.valid}}">-->
-                <!--<input type ="text" id="input2" is="core-input" pattern="^[0-9].*">-->
-            <!--</paper-input-decorator>-->
-        <!--</template>-->
-        <!--</div>-->
+
 
 
     </template>
