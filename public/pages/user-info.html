@@ -10,6 +10,7 @@
 <link rel="import" href="/bower_components/google-map/google-map.html"/>
 <link rel="import" href="/bower_components/paper-input/paper-input.html"/>
 <link rel="import" href="/bower_components/paper-input/paper-input-decorator.html"/>
+<link rel="import" href="/bower_components/paper-tabs/paper-tabs.html"/>
 <link rel="import" href="/pages/elements/post-card.html"/>
 
 <script src="/bower_components/platform/platform.js"></script>
@@ -42,9 +43,15 @@
             textarea{
                 font-family: 'Raleway', sans-serif;
                 color: white;
-                font-size: 18px;
+                font-size: 30px;
             }
 
+           form {
+                font-family: 'Raleway', sans-serif;
+                color: white;
+                font-size: 30px;
+
+            }
             paper-input-decorator /deep/ .label-text
             paper-input-decorator /deep/ .error {
                 /* inline label,  floating label, error message and error icon color when the input is unfocused */
@@ -56,45 +63,48 @@
             paper-input-decorator /deep/ .label-text,
             paper-input-decorator /deep/ .error {
                 /* inline label,  floating label, error message and error icon color when the input is unfocused */
-                color: green;
-                font-size: 18px;
+                color: white;
+                font-family: 'Raleway', sans-serif;
+                font-size: 20px;
             }
 
             paper-input-decorator /deep/ ::-webkit-input-placeholder {
                 /* platform specific rules for placeholder text */
-                color: green;
+                color: white;
+                font-family: 'Raleway', sans-serif;
+                font-size: 20px;
             }
             paper-input-decorator /deep/ ::-moz-placeholder {
-                color: green;
+                color: white;
             }
             paper-input-decorator /deep/ :-ms-input-placeholder {
-                color: green;
+                color: white;
             }
 
             paper-input-decorator /deep/ .unfocused-underline {
                 /* line color when the input is unfocused */
-                background-color: green;
+                background-color: transparent;
             }
 
             paper-input-decorator[focused] /deep/ .floating-label .label-text {
                 /* floating label color when the input is focused */
-                color: orange;
+                color: #A7FFEB;
             }
 
             paper-input-decorator /deep/ .focused-underline {
                 /* line color when the input is focused */
-                background-color: orange;
+                background-color: white;
             }
 
             paper-input-decorator /deep/ .cursor {
                 /* cursor color during the focus transition */
-                background-color: orange;
+                background-color: white;
             }
 
             paper-input-decorator.invalid[focused] /deep/ .floated-label .label-text,
             paper-input-decorator[focused] /deep/ .error {
                 /* floating label, error message nad error icon color when the input is invalid and focused */
-                color: salmon;
+                color: #A7FFEB;
                 font-size: 16px;
 
             }
@@ -102,15 +112,7 @@
             paper-input-decorator.invalid /deep/ .focused-underline,
             paper-input-decorator.invalid /deep/ .cursor {
                 /* line and cursor color when the input is invalid and focused */
-                background-color: salmon;
-            }
-            .login{
-                height: 35%;
-                padding-left: 5%;
-                width: 95%;
-                font-size: 24px;
-                color: white;
-                background-color: rgba(102, 51, 51,.3);
+                background-color: white;
             }
 
             paper-checkbox{
@@ -127,35 +129,91 @@
                 background-color: #A7FFEB;
             }
 
+            .infoWrapper{
+                background-color: rgba(51,51,104,.6);
+            }
+
+            .infotabs {
+                background-color: rgba(51, 51, 104, .6);
+                color: lightsalmon;
+            }
+
+            paper-tabs{
+                font-family: 'Raleway', sans-serif;
+                font-size: 24px;
+            }
+
         </style>
 
+            <div class="holder" vertical layout>
+                <div class="divider" vertical layout flex one center-justified=""></div>
 
-        <div vertical layout flex four center style="height: 300px">
+                <div horizontal layout class="textWrapper" flex two center-justified>
+                    <div vertical layout id="infoWelcome">
+                        <h1 id="titleTwo" vertical layout center-justified>Welcome to Title of Social Network!!</h1>
+                        <h2 id="introBoxTwo" vertical layout center-justified>Before we can connect you to all the coolest places and<br>
+                            people, we will ned to know a little more about you!</h2>
+                    </div>
+                </div>
 
-            <form action ="">
+                <div horizontal layout center-justified>
+                    <div flex one></div>
+                    <div center-justified class="infoWrapper" style="width: 60%">
+                        <div vertical layout center-justified>
+                            <div flex three class="infotabs" start center-justified>
+                                <paper-tabs selected="0" >
+                                    <paper-tab>About You</paper-tab>
+                                    <paper-tab>Places</paper-tab>
+                                    <paper-tab>Favourite</paper-tab>
+                                    <paper-tab></paper-tab>
+                                    <paper-tab></paper-tab>
+                                </paper-tabs>
+                            </div>
+
+                            <div horizontal layout>
+                                <div flex one></div>
+
+                            <form two action ="" flex three style="width: 80%" center-justified>
 
 
-                <!--<paper-input-decorator id="paper1" error= "Value must start with a number!" floatingLabel label="Email Address">-->
-                    <!--<input id="input1" type = "text" is="core-input" onblur="validate()" pattern="^[0-9].*">-->
-                <!--</paper-input-decorator>-->
-                <!--<input type="text" >-->
+                                <paper-input-decorator id="username" floatingLabel label error= "Please enter a valid email address!">
+                                    <input id="checkpswd" class="input" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">
+                                </paper-input-decorator>
 
-                <!--<paper-input-decorator id="paper2" error= "Please enter a valid email address!" floatingLabel="Email Address">-->
-                    <!--<input id="input2" type ="text" is="core-input" onblur="validate2()" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">-->
-                <!--</paper-input-decorator>-->
-
-                <paper-input-decorator  floatingLabel label="Password">
-                    <input id="password" type ="text" is="core-input" value = "{{password}}">
-                </paper-input-decorator>
+                                <paper-input-decorator  floatingLabel label="Name">
+                                    <input id="password" class="input" type ="text" is="core-input" value = "">
+                                </paper-input-decorator>
 
 
-                <paper-input-decorator id="username" floatingLabel label="Confirm Password" error= "Please enter a valid email address!">
-                    <input id="checkpswd" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">
-                </paper-input-decorator>
+                                <paper-input-decorator id="username" floatingLabel label="City" error= "Please enter a valid email address!">
+                                    <input id="checkpswd" class="input" type ="text" is="core-input" onblur ="confirm()">
+                                </paper-input-decorator>
+
+                                <paper-input-decorator  floatingLabel label="Interests">
+                                    <input id="password" type ="text" is="core-input" value = "{{password}}">
+                                </paper-input-decorator>
 
 
-             </form>
-       </div>
+                                <paper-input-decorator id="username" floatingLabel label="Confirm Password" error= "Please enter a valid email address!">
+                                    <input id="checkpswd" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">
+                                </paper-input-decorator>
+
+
+                                <paper-input-decorator id="username" floatingLabel label error= "Please enter a valid email address!">
+                                    <input id="checkpswd" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">
+                                </paper-input-decorator>
+                            </form>
+                                <div flex one></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div flex one></div>
+                </div>
+
+                <div flex two>
+
+                </div>
+        </div>
 
             <script>
 
@@ -168,6 +226,16 @@
 
                     valid.isInvalid = !checkpswd.validity.valid;
                 }
+
+
+                var paperInput = CoreStyle.g.
+                        paperInput = CoreStyle.g.paperInput || {};
+
+                paperInput.labelColor = '#ffa07a';
+                paperInput.cursorColor = '#A7FFEB';
+                paperInput.focusedColor = '#A7FFEB';
+                paperInput.invalidColor = '#ffa07a';
+
 
             </script>
 

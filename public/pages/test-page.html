@@ -28,24 +28,10 @@
 
     <title>app</title>
 
-</head>
-<body fullbleed vertical layout>
+<polymer-element name="home-page" noscript>
+    <template>
+        <style></style>
 
-<div vertical layout style="height: 1%"></div>
-<div horizontal layout center-center>
-    <core-toolbar horizontal layout center style="width: 99%">
-        <core-icon-button icon="menu" on-tap="{{menuAction}}"></core-icon-button>
-        <div flex>Adventure Net</div>
-        <core-icon-button icon="more" on-tap="{{moreAction}}"></core-icon-button>
-
-        <core-menu selected="0" on-core-select="{{selectAction}}">
-            <core-item icon="search" label="Search"></core-item>
-        </core-menu>
-    </core-toolbar>
-</div>
-
-<div vertical layout style="height: 20%; position: relative" class="buffer">
-</div>
 
 <div class="holder" horizontal layout>
     <div class="divider" flex one>
@@ -165,19 +151,9 @@
         paperInput.focusedColor = '#A7FFEB';
         paperInput.invalidColor = '#d34336';
 
-
-        /*var label = CoreStyle.g.paperInput.labelColor;
-         console.log(label);
-         label.setAttribute('style', label.style + 'color: white');*/
-
-        /*var paperShadow = document.querySelector('form#loginContainer /deep/ paper-shadow[class=span-shadow] /deep/ ');
-         console.log(paperShadow);
-         paperShadow.setAttribute('style',paperShadow.style+'height');
-         var paperBox = document.querySelector('form#loginContainer /deep/ paper-shadow[class=span-shadow] /deep/ paper-input[class=inputBox] /deep/ paper-input-decorator[id=decorator] ::shadow');
-         console.log(paperBox);*/
     });
 
 
 </script>
-</body>
-</html>
+</template>
+</polymer-element>

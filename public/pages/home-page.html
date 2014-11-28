@@ -25,21 +25,6 @@
     src: url('/styles/font-awesome-4.2.0/fonts/fontawesome-webfont.ttf') format('truetype');
     }
 
-    body {
-    height: auto;
-    width: 100%;
-    background-image: url(/styles/mountains.png);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-color: #cccccc;
-    }
-
-    core-toolbar{
-    background-color: rgba(0, 191, 165, .5);
-    height: 7%;
-    width: 100%;
-    }
-
     h1{
     color: white;
     font-family: 'Raleway', sans-serif;
@@ -91,77 +76,64 @@
     font-size: 18px;
     }
 
-    paper-input-decorator /deep/ .label-text, {
-    /* inline label,  floating label, error message and error icon color when the input is unfocused */
-    color: #A7FFEB;
-    font-family: 'Raleway', sans-serif;
-    font-size: 18px;
-    }
+    paper-input-decorator /deep/ .label-text
     paper-input-decorator /deep/ .error {
-        color: lightsalmon;
+        /* inline label,  floating label, error message and error icon color when the input is unfocused */
+        color: #A7FFEB;
         font-family: 'Raleway', sans-serif;
-        font-size: 16px;
+        font-size: 40px;
     }
+
+    paper-input-decorator /deep/ .label-text,
+    paper-input-decorator /deep/ .error {
+        /* inline label,  floating label, error message and error icon color when the input is unfocused */
+        color: white;
+        font-size: 18px;
+    }
+
     paper-input-decorator /deep/ ::-webkit-input-placeholder {
-    /* platform specific rules for placeholder text */
-    color: white;
-    font-family: 'Raleway', sans-serif;
-    font-size: 18px;
+        /* platform specific rules for placeholder text */
+        color: white;
     }
-
-    paper-input-decorator /deep/ .aria-label .label-text .floating-label{
-    color: #A7FFEB;
-    }
-
     paper-input-decorator /deep/ ::-moz-placeholder {
-    color: white;
+        color: white;
     }
     paper-input-decorator /deep/ :-ms-input-placeholder {
-    color: white;
+        color: white;
     }
 
     paper-input-decorator /deep/ .unfocused-underline {
-    /* line color when the input is unfocused */
-    background-color: transparent;
-    }
-
-    paper-input-decorator[unfocused] /deep/ .floating-label .label-text {
-    /* floating label color when the input is focused */
-    background-color: #A7FFEB;
+        /* line color when the input is unfocused */
+        background-color: white;
     }
 
     paper-input-decorator[focused] /deep/ .floating-label .label-text {
-    /* floating label color when the input is focused */
-    color: white;
+        /* floating label color when the input is focused */
+        color: #A7FFEB;
     }
 
     paper-input-decorator /deep/ .focused-underline {
-    /* line color when the input is focused */
-    background-color: white;
-    }
-
-    paper-input-decorator /deep/ .floated-label .label-text {
-    /* line color when the input is focused */
-    background-color: transparent;
-    color: #A7FFEB;
+        /* line color when the input is focused */
+        background-color: white;
     }
 
     paper-input-decorator /deep/ .cursor {
-    /* cursor color during the focus transition */
-    background-color: white;
+        /* cursor color during the focus transition */
+        background-color: white;
     }
 
-    paper-input-decorator.invalid[focused] /deep/ .floated-label .label-text, {
-    /* floating label, error message nad error icon color when the input is invalid and focused */
-    color: white;
+    paper-input-decorator.invalid[focused] /deep/ .floated-label .label-text,
+    paper-input-decorator[focused] /deep/ .error {
+        /* floating label, error message nad error icon color when the input is invalid and focused */
+        color: white;
+        font-size: 16px;
+
     }
-    paper-input-decorator.invalid[focused] /deep/  .error .floated-label {
-        color: lightsalmon;
-    }
+
     paper-input-decorator.invalid /deep/ .focused-underline,
     paper-input-decorator.invalid /deep/ .cursor {
-    /* line and cursor color when the input is invalid and focused */
-        background-color: lightsalmon;
+        /* line and cursor color when the input is invalid and focused */
+        background-color: white;
     }
 
     .login{
@@ -254,7 +226,7 @@
                             <input is="core-input" id="password" type ="password" value = "{{password}}">
                         </paper-input-decorator>
 
-                        <paper-input-decorator hidden block id="username" floatingLabel label="Confirm Password" error= "Please enter a valid email address!">
+                        <paper-input-decorator hidden block id="username" floatingLabel label="Confirm Password" error= "Must match password!!">
                             <input is="core-input" id="checkpswd" type ="password" onblur ="confirm()" pattern="{{password}}">
                         </paper-input-decorator>
 
@@ -285,7 +257,7 @@
             });
 
             var showSignUp = function () {
-                console.log('clicked');
+                console.log('signup with us was clicked');
                 document.querySelector('body /deep/ #username').removeAttribute('hidden');
                 document.querySelector('body /deep/ #stayLogin').setAttribute('hidden', 'hidden');
                 document.querySelector('body /deep/ #joinButton').removeAttribute('hidden');
@@ -309,6 +281,7 @@
 
             var join = function () {
                 console.log('joined');
+                document.querySelector('app-router').go('/user-info');
 
             };
 
@@ -334,18 +307,11 @@
             var paperInput = CoreStyle.g.
                     paperInput = CoreStyle.g.paperInput || {};
 
-            paperInput.labelColor = 'orange';
+            paperInput.labelColor = '#ffa07a';
             paperInput.cursorColor = '#A7FFEB';
             paperInput.focusedColor = '#A7FFEB';
-            paperInput.invalidColor = '#d34336';
-                /*var label = CoreStyle.g.paperInput.labelColor;
-             console.log(label);
-             label.setAttribute('style', label.style + 'color: white');*/
-                /*var paperShadow = document.querySelector('form#loginContainer /deep/ paper-shadow[class=span-shadow] /deep/ ');
-             console.log(paperShadow);
-             paperShadow.setAttribute('style',paperShadow.style+'height');
-             var paperBox = document.querySelector('form#loginContainer /deep/ paper-shadow[class=span-shadow] /deep/ paper-input[class=inputBox] /deep/ paper-input-decorator[id=decorator] ::shadow');
-             console.log(paperBox);*/
+            paperInput.invalidColor = '#ffa07a';
+
 
     </script>
 </template>
