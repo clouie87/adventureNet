@@ -1,0 +1,28 @@
+<link rel="import" href="/bower_components/core-toolbar/core-toolbar.html"/>
+<link rel="import" href="/bower_components/core-menu/core-menu.html"/>
+<link rel="import" href="/bower_components/core-icon-button/core-icon-button.html"/>
+<link rel="import" href="/bower_components/core-item/core-item.html"/>
+
+<polymer-element name="top-bar" noscript>
+    <template>
+        <style>
+            core-toolbar{
+                background-color: rgba(0, 191, 165, .5);
+                height: 7%;
+                width: 100%;
+            }
+        </style>
+        <div vertical layout style="height: 1%; position: relative"><br></div>
+        <div horizontal layout center-center>
+            <core-toolbar horizontal layout center style="width: 99%">
+                <core-icon-button icon="menu" on-tap="{{menuAction}}"></core-icon-button>
+                <div flex>Adventure Net</div>
+                <core-icon-button icon="more" on-tap="{{moreAction}}"></core-icon-button>
+
+                <core-menu selected="0" on-core-select="{{selectAction}}">
+                    <core-item icon="search" label="Search"></core-item>
+                </core-menu>
+            </core-toolbar>
+        </div>
+    </template>
+</polymer-element>

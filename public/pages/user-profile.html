@@ -1,17 +1,23 @@
 
     <link type= "text/css" rel= "stylesheet" href="/styles/style.css"/>
+    <!--<link rel="import" href="/bower_components/polymer/polymer.min.js"/>-->
     <link rel="import" href="/bower_components/polymer/polymer.html"/>
     <link rel="import" href="/bower_components/core-item/core-item.html"/>
     <link rel="import" href="/bower_components/core-menu/core-menu.html"/>
-    <link rel="import" href="/bower_components/core-pages/core-pages.html"/>
-    <link rel="import" href="/bower_components/core-toolbar/core-toolbar.html"/>
-    <link rel="import" href="/bower_components/core-scaffold/core-scaffold.html"/>
+
     <link rel="import" href="/bower_components/google-map/google-map.html"/>
     <link rel="import" href="/pages/elements/post-card.html"/>
+    <link rel="import" href="/pages/elements/blog-post.html"/>
+
 
     <script src="/bower_components/platform/platform.js"></script>
 
-<polymer-element name="user-profile" noscript>
+    <app-router>
+        <app-route path="/user-profile/:pathArg1" import="/user-profile/user-profile.html"></app-route>
+    </app-router>
+
+
+    <polymer-element name="user-profile" attributes="pathArg1 queryParam1" noscript>
 <template>
     <style>
 
@@ -154,6 +160,15 @@
             </div>
         </div>
     <div vertical flex two>hey</div>
+    <div class="container">
+        <div class="hero-unit" style="width:90%">
+            <blogpost-element>
+                <link rel="import" href="/bower_components/polymer-jsonp/polymer-jsonp.html" />
+                <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AhcraNy3sgspdDhuQ2pvN21JVW9NeVA0M1h4eGo3RGc/od6/public/values?alt=json-in-script" response="{{posts}}"></polymer-jsonp>
+            </blogpost-element>
+        </div>
+    </div>
+
 </div>
 
 
@@ -164,27 +179,30 @@
         console.log("ready");
 
     });
+    document.addEventListener('WebComponentsReady',function(){
 
-    function get_location(){
-        var located = window.navigator.geolocation.getCurrentPosition(
-                function show_map(position){
-                    console.log("position",JSON.stringify(position));
-                    var userlatitude = position.coords.latitude;
-                    var userlongitude = position.coords.longitude;
-                    var map = document.getElementById("map");
-                    map.setAttribute("latitude",userlatitude);
-                    map.setAttribute("longitude",userlongitude);
-                });
-        console.log("located",located);
+    });
+//
+//    function get_location(){
+//        var located = window.navigator.geolocation.getCurrentPosition(
+//                function show_map(position){
+//                    console.log("position",JSON.stringify(position));
+//                    var userlatitude = position.coords.latitude;
+//                    var userlongitude = position.coords.longitude;
+//                    var map = document.getElementById("map");
+//                    map.setAttribute("latitude",userlatitude);
+//                    map.setAttribute("longitude",userlongitude);
+//                });
+//        console.log("located",located);
+//
+//        document.addEventListener('click', function(e) {
+//            var pages = document.querySelector('core-pages');
+//            pages.selected = (pages.selected + 1) % pages.children.length;
+//        });
+//
+//
 
-        document.addEventListener('click', function(e) {
-            var pages = document.querySelector('core-pages');
-            pages.selected = (pages.selected + 1) % pages.children.length;
-        });
-
-
-
-    }/*
+    /*}
      function show_map(position){
      var latitude = position.coords.latitude;
      var longitude = position.coords.longitude;
@@ -203,17 +221,17 @@
             "longitude":-60.196848,
             "latitude":46.1427955
         }
-    };*/
+    };
     var doc = {
         "getElementById":function(){
             console.log("does stuff")
         }
     };
     console.log(document);
-    get_location();
+    get_location();*/
 
 
-    var paperInput = CoreStyle.g.
+    var paperInput = CoreStyle.g. // changes the core stylings color of the paper inputs
             paperInput = CoreStyle.g.paperInput || {};
 
     paperInput.labelColor = '#ffa07a';
@@ -221,7 +239,11 @@
     paperInput.focusedColor = '#A7FFEB';
     paperInput.invalidColor = '#ffa07a';
 
+
+
 </script>
+    <!--<script src="/bower_components/polymer/polymer.min.js"></script>-->
+
 
 </template>
 </polymer-element>

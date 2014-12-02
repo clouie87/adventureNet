@@ -5,16 +5,14 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <!--<meta name="description" content="">-->
   <title>Adventure Net</title>
+
+
   <script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
   <!--<script src="/bower_components/platform/platform.js"></script>-->
 
   <link rel="import" href="/bower_components/polymer/polymer.html"/>
-  <link rel="import" href="/bower_components/core-item/core-item.html"/>
-  <link rel="import" href="/bower_components/core-icon-button/core-icon-button.html"/>
-  <link rel="import" href="/bower_components/core-menu/core-menu.html"/>
-  <link rel="import" href="/bower_components/core-pages/core-pages.html"/>
-  <link rel="import" href="/bower_components/core-toolbar/core-toolbar.html"/>
 
   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
@@ -24,23 +22,14 @@
   <!--<link rel="import" href="/pages/test-page.html">-->
   <link rel="import" href="/pages/user-profile.html">
   <link rel="import" href="/pages/user-info.html">
-  <link rel="import" href="/pages/elements/post-card.html">
+  <link rel="import" href="/pages/elements/blog-post.html">
+  <link rel="import" href="/pages/elements/top-bar.html">
 </head>
 
 <body vertical layout fullbleed unresolved>
 
-<div vertical layout style="height: 1%; position: relative"></div>
-<div horizontal layout center-center>
-  <core-toolbar horizontal layout center style="width: 99%">
-    <core-icon-button icon="menu" on-tap="{{menuAction}}"></core-icon-button>
-    <div flex>Adventure Net</div>
-    <core-icon-button icon="more" on-tap="{{moreAction}}"></core-icon-button>
+<top-bar></top-bar>
 
-    <core-menu selected="0" on-core-select="{{selectAction}}">
-      <core-item icon="search" label="Search"></core-item>
-    </core-menu>
-  </core-toolbar>
-</div>
 <div vertical layout style="height: 20%; position: relative" class="buffer"></div>
 
 <app-router mode="auto|pushstate|hash">
@@ -50,11 +39,11 @@
   <app-route path="*" import="/pages/not-found-page.html"></app-route>
 </app-router>
 
+<script>
+  $( document ).ready(function() {
+    console.log( "Polymer is ready!" );
+  });
+</script>
 </body>
 
-<script>
-  $(document).ready(function(){
-    console.log('ready!');
-  })
-</script>
 </html>

@@ -1,17 +1,12 @@
 
 <link type= "text/css" rel= "stylesheet" href="/styles/style.css"/>
 <link rel="import" href="/bower_components/polymer/polymer.html"/>
-<link rel="import" href="/bower_components/core-item/core-item.html"/>
-<link rel="import" href="/bower_components/core-menu/core-menu.html"/>
 <link rel="import" href="/bower_components/core-pages/core-pages.html"/>
-<link rel="import" href="/bower_components/core-input/core-input.html"/>
-<link rel="import" href="/bower_components/core-toolbar/core-toolbar.html"/>
-<link rel="import" href="/bower_components/core-scaffold/core-scaffold.html"/>
-<link rel="import" href="/bower_components/google-map/google-map.html"/>
 <link rel="import" href="/bower_components/paper-input/paper-input.html"/>
 <link rel="import" href="/bower_components/paper-input/paper-input-decorator.html"/>
 <link rel="import" href="/bower_components/paper-tabs/paper-tabs.html"/>
 <link rel="import" href="/pages/elements/post-card.html"/>
+<link rel="import" href="/pages/elements/top-bar.html"/>
 
 <script src="/bower_components/platform/platform.js"></script>
 
@@ -138,12 +133,17 @@
                 color: lightsalmon;
             }
 
+            core-pages /deep/ .infoWrapper {
+                background-color: rgba(51, 51, 104, .6);
+            }
             paper-tabs{
                 font-family: 'Raleway', sans-serif;
                 font-size: 24px;
             }
 
+
         </style>
+            <!--<top-bar></top-bar>-->
 
             <div class="holder" vertical layout>
                 <div class="divider" vertical layout flex one center-justified=""></div>
@@ -161,50 +161,104 @@
                     <div center-justified class="infoWrapper" style="width: 60%">
                         <div vertical layout center-justified>
                             <div flex three class="infotabs" start center-justified>
-                                <paper-tabs selected="0" >
+                                <!--<paper-tabs selected="0" >-->
+                                    <!--<paper-tab>About You</paper-tab>-->
+                                    <!--<paper-tab>Places</paper-tab>-->
+                                    <!--<paper-tab>Favourite</paper-tab>-->
+                                    <!--<paper-tab></paper-tab>-->
+                                    <!--<paper-tab></paper-tab>-->
+                                <!--</paper-tabs>-->
+
+                                <paper-tabs selected="{{selected}}">
                                     <paper-tab>About You</paper-tab>
                                     <paper-tab>Places</paper-tab>
-                                    <paper-tab>Favourite</paper-tab>
-                                    <paper-tab></paper-tab>
-                                    <paper-tab></paper-tab>
+                                    <paper-tab>Favourites</paper-tab>
                                 </paper-tabs>
+
+                                <core-pages selected="{{selected}}">
+                                  <div class="infoWrapper">
+                                      <div horizontal layout class="infoWrapper">
+                                          <div flex one></div>
+
+                                          <form two action ="" flex three style="width: 80%" center-justified>
+
+
+                                              <paper-input-decorator id="username" floatingLabel label error= "Please enter a valid email address!">
+                                                  <input id="checkpswd" class="input" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">
+                                              </paper-input-decorator>
+
+                                              <paper-input-decorator  floatingLabel label="Name">
+                                                  <input id="password" class="input" type ="text" is="core-input" value = "">
+                                              </paper-input-decorator>
+
+
+                                              <paper-input-decorator id="username" floatingLabel label="City" error= "Please enter a valid email address!">
+                                                  <input id="checkpswd" class="input" type ="text" is="core-input" onblur ="confirm()">
+                                              </paper-input-decorator>
+
+                                              <paper-input-decorator  floatingLabel label="Interests">
+                                                  <input id="password" type ="text" is="core-input" value = "{{password}}">
+                                              </paper-input-decorator>
+
+
+                                              <paper-input-decorator id="username" floatingLabel label="Confirm Password" error= "Please enter a valid email address!">
+                                                  <input id="checkpswd" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">
+                                              </paper-input-decorator>
+
+
+                                              <paper-input-decorator id="username" floatingLabel label error= "Please enter a valid email address!">
+                                                  <input id="checkpswd" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">
+                                              </paper-input-decorator>
+                                          </form>
+                                          <div flex one></div>
+                                      </div>
+                                  </div>
+
+                                    <!--THIS STARTS THS PLACES TAB IN THE INFO WRAPPER!-->
+
+                                  <div>
+                                      <div horizontal layout class="infoWrapper">
+                                          <div flex one></div>
+
+                                          <form two action ="" flex three style="width: 80%" center-justified>
+
+
+                                              <paper-input-decorator id="username" floatingLabel label error= "Please enter a valid email address!">
+                                                  <input id="checkpswd" class="input" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">
+                                              </paper-input-decorator>
+
+                                              <paper-input-decorator  floatingLabel label="Where is your favourite place?">
+                                                  <input id="password" class="input" type ="text" is="core-input" value = "">
+                                              </paper-input-decorator>
+
+
+                                              <paper-input-decorator id="username" floatingLabel label="Who did you go with?" error= "Please enter a valid email address!">
+                                                  <input id="checkpswd" class="input" type ="text" is="core-input" onblur ="confirm()">
+                                              </paper-input-decorator>
+
+                                              <paper-input-decorator  floatingLabel label="What did you do/see?">
+                                                  <input id="password" type ="text" is="core-input" value = "{{password}}">
+                                              </paper-input-decorator>
+
+
+                                              <paper-input-decorator id="username" floatingLabel label="Confirm Password" error= "Please enter a valid email address!">
+                                                  <input id="checkpswd" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">
+                                              </paper-input-decorator>
+
+
+                                              <paper-input-decorator id="username" floatingLabel label error= "Please enter a valid email address!">
+                                                  <input id="checkpswd" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">
+                                              </paper-input-decorator>
+                                          </form>
+                                          <div flex one></div>
+                                      </div>
+                                  </div>
+                                  <div>Page 3</div>
+                                </core-pages>
+
                             </div>
 
-                            <div horizontal layout>
-                                <div flex one></div>
 
-                            <form two action ="" flex three style="width: 80%" center-justified>
-
-
-                                <paper-input-decorator id="username" floatingLabel label error= "Please enter a valid email address!">
-                                    <input id="checkpswd" class="input" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">
-                                </paper-input-decorator>
-
-                                <paper-input-decorator  floatingLabel label="Name">
-                                    <input id="password" class="input" type ="text" is="core-input" value = "">
-                                </paper-input-decorator>
-
-
-                                <paper-input-decorator id="username" floatingLabel label="City" error= "Please enter a valid email address!">
-                                    <input id="checkpswd" class="input" type ="text" is="core-input" onblur ="confirm()">
-                                </paper-input-decorator>
-
-                                <paper-input-decorator  floatingLabel label="Interests">
-                                    <input id="password" type ="text" is="core-input" value = "{{password}}">
-                                </paper-input-decorator>
-
-
-                                <paper-input-decorator id="username" floatingLabel label="Confirm Password" error= "Please enter a valid email address!">
-                                    <input id="checkpswd" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">
-                                </paper-input-decorator>
-
-
-                                <paper-input-decorator id="username" floatingLabel label error= "Please enter a valid email address!">
-                                    <input id="checkpswd" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">
-                                </paper-input-decorator>
-                            </form>
-                                <div flex one></div>
-                            </div>
                         </div>
                     </div>
                     <div flex one></div>

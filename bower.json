@@ -19,6 +19,7 @@
     "core-elements": "Polymer/core-elements#~0.5.1",
     "google-map": "~0.4.0",
     "platform": "~1.2.0",
-    "app-router": "~2.0.4"
+    "app-router": "~2.0.4",
+    "gr-avatar": "~0.0.6"
   }
 }
