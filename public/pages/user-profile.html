@@ -19,9 +19,16 @@
 <template>
     <style>
 
-        .holderUser{
-            background-color: #004444;
-            height: 100%;
+        section#profilePic{
+            background-image: url("/styles/shark3.jpg");
+            background-repeat: no-repeat;
+            background-size: 100%;
+            position: relative;
+        }
+
+        image .avatar-image{
+            height: 300px;
+            width: 300px;
         }
 
         core-toolbar{
@@ -81,10 +88,10 @@
             width: 100%;
         }
 
-        .avatar-image{
-            height: 100px;
-            width: 100px;
-        }
+       div .buffer{
+           height: 20px;
+           background-color: transparent;
+       }
 
         blog-element /deep/.row{
             background-color:rgba(102, 51, 51,.3);
@@ -93,18 +100,25 @@
     </style>
 
 
-<div class="holderUser" vertical layout style="background-color: white">
+<div class="holderUser" vertical layout>
         <!--<div id="map" flex self-stretch four vertical layout style="height: 40%">-->
             <!--&lt;!&ndash;<google-map id="map" latitude="37.77493" longitude="-122.41942">-->
 
             <!--</google-map> &ndash;&gt;-->
         <!--</div>-->
 
-        <div id="profilePic" horizontal layout flex three center-justified style="height: 500px">
-            <button><img class="avatar-image" src="{{src}}"/>upload your image here</button>
-            <!--<post-card>-->
+        <section id="profilePic" horizontal layout flex three style="height: 800px">
+            <div horizontal layout flex one self-end>
+                <div end-justified style="height: 200px; width: 200px; background-color: transparent"></div>
+                <div vertical layout id="picImage">
+                    <img class="avatar-image" src="/styles/rock_climbing.jpg"/>
+                    <button>upload your image here</button>
+                </div>
+            </div>
+                <!--<post-card>-->
                 <!--<img width ='70px' height ='70px' src="../styles/mountains%20copy.jpg">-->
                 <!--<h2>ssldkj</h2>-->
+
                 <!--<p> Shosdf</p>-->
             <!--</post-card>-->
             <!--<div horizontal layout flex one></div>-->
@@ -114,23 +128,31 @@
                 <!--</div>-->
             <!--</div>-->
             <!--<div flex four style="background-color: transparent"></div>-->
-        </div>
+        </section>
 
-        <div vertical layout flex two style="height: 50px; background-color: black"></div>
+        <div vertical layout flex two class="buffer"></div>
         <div class="userMessage" horizontal layout center-justified flex two style="height: 150px; background-color: #000066; ">
                 <input is="core-input" class="userMessageText" type="text" placeholder="What are you thinking?" value="" style="height: 150px; width:78%; border: solid #3B78E7; background-color: orange "/>
                 <input id="submit" type="submit" >
         </div>
 
-        <div vertical layout flex two style="height: 50px; background-color: black"></div>
+        <div vertical layout flex two class="buffer"></div>
 
         <div class="container" style="background-color: rgba(102, 51, 51,.3);">
             <div horizontal layout>
 
                 <div class="messageWrapper">
                     <section>
-                    <div vertical layout id="messageWrapper"></div>
+                    <div horizontal layout>
+                        <div flex two></div>
+                        <div flex ten>
+                            <div vertical layout center-justified id="messageWrapper"></div>
+                        </div>
+                        <div flex two></div>
+                    </div>
+
                     <div vertical layout class="hero-unit" style=" text-wrap: normal">
+
                         <blog-element>
                             <!--<link rel="import" href="bower_components/polymer-jsonp/polymer-jsonp.html"/>-->
                             <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AhcraNy3sgspdHVQUGd2M2Q0MEZnRms3c3dDQWQ3V1E/od6/public/values?alt=json-in-script&callback=" response="{{posts}}"></polymer-jsonp>
@@ -141,7 +163,7 @@
             </div>
         </div>
 </div>
-
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
     $(document).ready(function() {
         console.log("User profile is ready");
@@ -150,6 +172,8 @@
             console.log('clicked');
             var messages = document.querySelector('body /deep/.userMessageText').value;
             console.log("messages", messages);
+            $('body /deep/ #messageWrapper').prepend($('<div style="background-color: #006600; height: 200px">').text(messages));
+            console.log("messages prepended");
         })
 
 
