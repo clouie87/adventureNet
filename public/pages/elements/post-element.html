@@ -1,0 +1,62 @@
+<link rel="import" href="/pages/user-profile.html"/>
+<link rel="import" href="/bower_components/gr-avatar/gr-avatar.html">
+
+<polymer-element name="post-element"  attributes="post selected">
+
+
+    <template if="{{post.gsx$slug.$t === selected}}">
+        <style>
+
+        </style>
+
+
+
+        <!--<h2>-->
+            <!--<a href="{{post.gsx$slug.$t}}">-->
+                <!--{{post.gsx$title.$t  }}-->
+            <!--</a>-->
+        <!--</h2>-->
+
+        <div horizontal layout center-justified>
+            <div flex one></div>
+
+            <div flex one horizontal layout center-justified>
+                <div flex three></div>
+                <div vertical layout>
+                    <div flex one></div>
+                    <div flex two><gr-avatar email="{{post.gsx$email.$t}}" size="100"></gr-avatar></div>
+                    <div flex one></div>
+                </div>
+                <div flex one></div>
+            </div>
+
+            <div flex six>
+                <div vertical layout>
+                    <p>By {{post.gsx$author.$t }}</p>
+                    <p>{{post.gsx$content.$t }}</p>
+                </div>
+            </div>
+            <div flex one></div>
+            <div flex one></div>
+        </div>
+
+        <div><br></div>
+
+        <!--<p>Published on: {{post.gsx$date.$t }}</p>-->
+        <!--<p>Keywords: {{post.gsx$keywords.$t }}</p>-->
+
+    </template>
+
+    <script>
+        Polymer('post-element', {
+            //applyAuthorStyles: true,
+            //resetStyleInheritance: true,
+            created: function() { },
+            enteredView: function() { },
+            leftView: function() { },
+            attributeChanged: function(attrName, oldVal, newVal) { }
+        });
+    </script>
+
+
+</polymer-element>

@@ -200,3 +200,12 @@ google-map {
     height: 250px;
     width: 250px;
 }
+
+.holderUser{
+    background-color: #004444;
+    height: 100%;
+}
+
+.container{
+    background-color: red;
+}
