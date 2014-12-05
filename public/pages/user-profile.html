@@ -7,6 +7,7 @@
     <link rel="import" href="/bower_components/core-menu/core-menu.html"/>
     <link rel="import" href="/bower_components/polymer-jsonp/polymer-jsonp.html"/>
     <link rel="import" href="/bower_components/google-map/google-map.html"/>
+    <link rel="import" href="/bower_components/paper-button/paper-button.html"/>
     <link rel="import" href="/pages/elements/post-card.html"/>
     <link rel="import" href="/pages/elements/blog-element.html"/>
     <link rel="import" href="/bower_components/core-animation/core-animation-group.html"/>
@@ -26,9 +27,10 @@
             position: relative;
         }
 
-        image .avatar-image{
-            height: 300px;
-            width: 300px;
+        img.avatar-image{
+            height: 400px;
+            width: 400px;
+            border: solid 2px darkblue;
         }
 
         core-toolbar{
@@ -56,29 +58,18 @@
             font-size: 42pt;
         }
 
-        #introContainer {
-            margin-top: 200px;
-            margin-left: -350px;
-            margin-right: 200px;
-            width: 850px;
-            float: left;
-        }
-
-        #introBox{
-            float: left;
-        }
-
-        #userContainer{
-
-            margin-right: 150px;
-            height: auto;
-            width: 300px;
-            float: right;
-
+        button{
+            background-color: #1a237e;
         }
         form {
             height: 200px;
             width: 100px;
+        }
+
+        section#holderUser{
+            background-color: white;
+            margin-bottom: 0;
+
         }
 
         google-map {
@@ -88,57 +79,44 @@
             width: 100%;
         }
 
-       div .buffer{
+       div.buffer{
            height: 20px;
            background-color: transparent;
        }
 
-        blog-element /deep/.row{
-            background-color:rgba(102, 51, 51,.3);
-        }
+        /*blog-element /deep/.row{*/
+            /*background-color:rgba(102, 51, 51,.3);*/
+        /*}*/
 
     </style>
 
 
-<div class="holderUser" vertical layout>
+<section id="holderUser" vertical layout>
         <!--<div id="map" flex self-stretch four vertical layout style="height: 40%">-->
             <!--&lt;!&ndash;<google-map id="map" latitude="37.77493" longitude="-122.41942">-->
 
             <!--</google-map> &ndash;&gt;-->
         <!--</div>-->
 
-        <section id="profilePic" horizontal layout flex three style="height: 800px">
+        <section id="profilePic" horizontal layout flex three style="height: 850px">
             <div horizontal layout flex one self-end>
-                <div end-justified style="height: 200px; width: 200px; background-color: transparent"></div>
+                <div end-justified style="height: 400px; width: 300px; background-color: transparent"></div>
                 <div vertical layout id="picImage">
-                    <img class="avatar-image" src="/styles/rock_climbing.jpg"/>
-                    <button>upload your image here</button>
+
+                    <paper-button><img class="avatar-image" src="/styles/rock_climbing.jpg"/></paper-button>
                 </div>
             </div>
-                <!--<post-card>-->
-                <!--<img width ='70px' height ='70px' src="../styles/mountains%20copy.jpg">-->
-                <!--<h2>ssldkj</h2>-->
-
-                <!--<p> Shosdf</p>-->
-            <!--</post-card>-->
-            <!--<div horizontal layout flex one></div>-->
-            <!--<div flex two style="background-color: transparent">-->
-                <!--<div flex horizontal center-center layout style=" background-color: white;width: 40%; height: 350px">-->
-                    <!--<paper-button style="width: 30%; height: 20%; background-color: purple">OnClick import photo</paper-button>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div flex four style="background-color: transparent"></div>-->
         </section>
 
         <div vertical layout flex two class="buffer"></div>
-        <div class="userMessage" horizontal layout center-justified flex two style="height: 150px; background-color: #000066; ">
-                <input is="core-input" class="userMessageText" type="text" placeholder="What are you thinking?" value="" style="height: 150px; width:78%; border: solid #3B78E7; background-color: orange "/>
+        <div class="userMessage" horizontal layout center-justified flex two style="height: 150px;">
+                <input is="core-input" class="userMessageText" type="text" placeholder="What are you thinking?" value="" style="height: 150px; width:78%; border: 1px solid black; background-color: white"/>
                 <input id="submit" type="submit" >
         </div>
 
         <div vertical layout flex two class="buffer"></div>
 
-        <div class="container" style="background-color: rgba(102, 51, 51,.3);">
+        <div class="container" style="background-color: rgba(54, 144, 235, 0.3)">
             <div horizontal layout>
 
                 <div class="messageWrapper">
@@ -162,7 +140,7 @@
                 </div>
             </div>
         </div>
-</div>
+</section>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
     $(document).ready(function() {

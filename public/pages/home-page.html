@@ -21,9 +21,9 @@
     color: white;
     font-family: 'Raleway', sans-serif;
     text-shadow: -2px 0 grey, 0 2px grey, 2px 0 grey, 0 -2px grey;
-    font-size:60pt;
+    font-size:52pt;
     font-weight: bold;
-    float: left;
+    margin-bottom:0;
     }
 
     h2{
@@ -34,11 +34,9 @@
     font-size: 48pt;
     }
 
-    div.buffer{
-        height: 500px;
-
+    div.buffer {
+        height: 400px;
     }
-
 
     #buttons{
     margin-top: 5%;
@@ -53,21 +51,26 @@
     font-size: 14px;
     }
 
-    #userContainer{
+    div.textContainer{
     border: 3px solid #636363;
-    background-color: rgba(102,51,51, .5);
-    }
-
-    form{
-    margin-top: 2%;
-    margin-left: 10%;
+    background-color: rgba(102,51,51, .4);
     width: 80%;
     }
 
-    #loginContainer{
+    /*div#introContainer{*/
+        /*background-color: orange;*/
+    /*}*/
+
+    /*form{*/
+    /*margin-top: 2%;*/
+    /*margin-left: 10%;*/
+    /*width: 80%;*/
+    /*}*/
+
+    div#loginContainer{
         font-family: 'Raleway', sans-serif;
         color: white;
-        font-size: 20px;
+        font-size: 32px;
     }
 
     textarea{
@@ -126,7 +129,7 @@
     paper-input-decorator[focused] /deep/ .error {
         /* floating label, error message nad error icon color when the input is invalid and focused */
         color: white;
-        font-size: 16px;
+        font-size: 18px;
 
     }
 
@@ -136,27 +139,29 @@
         background-color: white;
     }
 
-    .login{
-    height: 35%;
-    padding-left: 5%;
-    width: 95%;
-    font-size: 24px;
-    color: white;
-    background-color: rgba(102, 51, 51,.3);
-    }
+    /*.login{*/
+    /*height: 35%;*/
+    /*padding-left: 5%;*/
+    /*width: 95%;*/
+    /*font-size: 24px;*/
+    /*color: white;*/
+    /*background-color: rgba(102, 51, 51,.3);*/
+    /*}*/
 
     paper-checkbox{
     margin-left: 3%;
     }
 
-    paper-button{
+    paper-button#joinButton{
     margin-left: 15%;
     margin-right: 15%;
-    width: 20%;
-    height: 20%;
+    width: 30%;
+    height: 15%;
     border: 3px #00BFA5 solid;
     color: #00BFA5;
     background-color: #A7FFEB;
+    font-size: 25px;
+    font-weight: bolder;
     }
 
     #logInButton{
@@ -179,77 +184,102 @@
     float: left;
     border: 1px solid white;
     }
-
     paper-checkbox::shadow #checkbox.checked {
     border-color: white;
     }
     paper-checkbox::shadow #ink {
     color: #00BFA5;
     }
-
     paper-checkbox::shadow #checkbox {
     border-color: white;
     }
 </style>
 
+<div id="homeContainer">
+    <!-- top margin -->
     <div class="buffer"></div>
-    <div class="holder" horizontal layout>
 
-        <div class="divider" flex one>
-        </div>
-        <div id="introContainer" vertical layout flex three center>
-            <h1 horizontal layout start id="title">Title of Social Network</h1>
-            <h2 id="introBox">Get Connected to your friends, or
-                others that have similar interests
-                as you! Find the best places to
-                explore, and the best people to explore them with!</h2>
-        </div>
+    <!--the row across the page where the purple box lives-->
+    <div horizontal layout>
+        <div flex one></div> <!--the buffer on the left side before the purple box-->
 
-        <div class="dividerTwo" flex one>
-        </div>
+        <!--everything in the purple box-->
 
-        <div horizontal layout flex three>
-            <div id="userContainer" vertical layout flex two>
-                <div id="buttons" horizontal layout flex center-justified>
-                    <paper-button id="logInButton" flex onclick="showLogin()">Login</paper-button>
-                    <paper-button id="signUpButton" flex onclick="showSignUp()">Signup</paper-button>
+        <div class="textContainer" horizontal layout flex four>
+            <div class="divider" flex one></div>
+
+            <div id="introContainer" vertical layout flex four>
+                <div flex one>
+                    <br>
+                    <br>
+                </div>
+                <h1 flex one>Title of Social Network</h1>
+                <h2 flex two id="introBox">Get Connected to your friends, or
+                    others that have similar interests
+                    as you! Find the best places to
+                    explore, and the best people to explore them with!</h2>
+                <div flex two>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </div>
+
+
+            <div class="dividerTwo" flex one></div>
+
+            <div horizontal layout flex three>
+                <div id="userContainer" vertical layout flex four center>
+                    <div>
+                        <br>
+                        <br>
+                    </div>
+                    <h1>Dive Into EpicEmys!</h1>
+                    <!--<div id="buttons" horizontal layout flex center-justified>-->
+                        <!--<paper-button id="logInButton" flex onclick="showLogin()">Login</paper-button>-->
+                        <!--<paper-button id="signUpButton" flex onclick="showSignUp()">Signup</paper-button>-->
+                    <!--</div>-->
+
+                    <div id="loginContainer" self-stretch vertical layout center-justified>
+                        <form vertical layout self-stretch>
+
+                            <paper-input-decorator id="email" error= "Please enter a valid email address!" floatingLabel label="Email Address">
+                                <input is="core-input" id="usrEmail" type ="text" onblur="validateEmail()" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">
+                            </paper-input-decorator>
+
+                            <paper-input-decorator  floatingLabel label="Password">
+                                <input is="core-input" id="password" type ="password" value = "{{password}}">
+                            </paper-input-decorator>
+
+                            <paper-input-decorator block id="username" floatingLabel label="Confirm Password" error= "Must match password!!">
+                                <input is="core-input" id="checkpswd" type ="password" onblur ="confirm()" pattern="{{password}}">
+                            </paper-input-decorator>
+
+
+                            <div hidden id="stayLogin" horizontal layout>
+                                <paper-checkbox horizontal layout center></paper-checkbox>
+                                <p vertical layout start>Keep me logged in</p>
+                            </div>
+
+                            <!--<div horizontal layout flex one></div>-->
+                        </form>
+                    </div>
+                    <div horizontal layout flex one self-stretch></div>
+                    <div horizontal layout flex one center-justified self-center>
+                        <!--<paper-button hidden id="signInButton" onclick="signIn()">Login</paper-button>-->
+                        <!--<a is="pushstate-anchor" href="/#/user-profile">--><paper-button id="joinButton" onclick="join()">Join</paper-button>
+                    </div>
+
+                    <div horizontal layout flex one self-stretch></div>
                 </div>
                 <div flex one></div>
-                <div id="loginContainer" self-stretch vertical layout center-justified>
-                    <form vertical layout self-stretch>
-
-
-                        <paper-input-decorator id="email" error= "Please enter a valid email address!" floatingLabel label="Email Address">
-                            <input is="core-input" id="usrEmail" type ="text" onblur="validateEmail()" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">
-                        </paper-input-decorator>
-
-                        <paper-input-decorator  floatingLabel label="Password">
-                            <input is="core-input" id="password" type ="password" value = "{{password}}">
-                        </paper-input-decorator>
-
-                        <paper-input-decorator hidden block id="username" floatingLabel label="Confirm Password" error= "Must match password!!">
-                            <input is="core-input" id="checkpswd" type ="password" onblur ="confirm()" pattern="{{password}}">
-                        </paper-input-decorator>
-
-
-                        <div id="stayLogin" horizontal layout>
-                            <paper-checkbox horizontal layout center></paper-checkbox>
-                            <p vertical layout start>Keep me logged in</p>
-                        </div>
-
-                        <div horizontal layout flex one></div>
-                    </form>
-                </div>
-                <div horizontal layout flex one self-stretch></div>
-                <div horizontal layout flex one center-justified self-center>
-                    <paper-button id="signInButton" onclick="signIn()">Login</paper-button>
-                    <!--<a is="pushstate-anchor" href="/#/user-profile">--><paper-button hidden id="joinButton" onclick="join()">Join</paper-button>
-                </div>
-                <div horizontal layout flex one self-stretch></div>
+                <!--<div class="divider" flex three></div>-->
             </div>
-            <div class="divider" flex one></div>
         </div>
+        <div flex one></div>
     </div>
+</div>
 
 
 <script>
