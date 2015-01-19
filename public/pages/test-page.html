@@ -1,68 +1,261 @@
-    <link rel="import" href="/bower_components/polymer/polymer.html"/>
-    <link rel="import" href="/bower_components/core-animated-pages/core-animated-pages.html"/>
+
+<link type= "text/css" rel= "stylesheet" href="/styles/style.css"/>
+<!--<link rel="import" href="/bower_components/polymer/polymer.min.js"/>-->
+<link rel="import" href="/bower_components/polymer/polymer.html"/>
+<link rel="import" href="/bower_components/core-item/core-item.html"/>
+<link rel="import" href="/bower_components/core-input/core-input.html"/>
+<link rel="import" href="/bower_components/core-menu/core-menu.html"/>
+<link rel="import" href="/bower_components/polymer-jsonp/polymer-jsonp.html"/>
+<link rel="import" href="/bower_components/google-map/google-map.html"/>
+<link rel="import" href="/bower_components/paper-button/paper-button.html"/>
+<link rel="import" href="/pages/elements/post-card.html"/>
+<link rel="import" href="/pages/elements/blog-element.html"/>
+<link rel="import" href="/bower_components/core-animation/core-animation-group.html"/>
+
+
+<script src="/bower_components/platform/platform.js"></script>
+
+
+<polymer-element name="test-page" attributes="" noscript>
+    <template>
+        <style>
+
+            div#profilePic{
+                background-image: url("/styles/shark3.jpg");
+                background-repeat: no-repeat;
+                background-size: 100%;
+                width: 80%;
+                position: relative;
+                float:left
+            }
+
+            img.avatar-image{
+                height: 50%;
+                width: 50%;
+                margin-bottom: -5%;
+                border: solid 2px darkblue;
+                float: left;
+                position: relative;
+            }
+
+            core-toolbar{
+                background-color: #9ebfbf;
+                height: 15%;
+                width: 100%;
+            }
+
+            @font-face {
+                font-family: awesome;
+                src: url('/styles/font-awesome-4.2.0/fonts/fontawesome-webfont.ttf') format('truetype');
+            }
+
+            h1{
+                color: white;
+                font-family: 'Raleway', sans-serif;
+                font-size:60pt;
+                float: left;
+            }
+
+            h2{
+                color: white;
+                font-family: 'Raleway', sans-serif;
+                font-weight: lighter;
+                font-size: 42pt;
+            }
+
+            button{
+                background-color: #1a237e;
+            }
+
+            form {
+                height: 200px;
+                width: 100px;
+            }
+
+            section#holderUser{
+                background-color: transparent;
+                margin-bottom: 0;
+
+            }
+
+            div#preferences{
+                float: right;
+                position: relative;
+                max-width: 200px;
+                border: 2px groove;
+            }
+
+            google-map {
+                margin-top: -2%;
+                display: block;
+                height: 700px;
+                width: 100%;
+            }
+
+            paper-button /deep/ div.button-content{
+                float:left;
+            }
+
+            div.buffer{
+                height: 20px;
+                background-color: transparent;
+            }
+
+            /*blog-element /deep/.row{*/
+            /*background-color:rgba(102, 51, 51,.3);*/
+            /*}*/
+
+        </style>
+
+
+        <section id="holderUser" vertical layout>
+            <!--<div id="map" flex self-stretch four vertical layout style="height: 40%">-->
+            <!--&lt;!&ndash;<google-map id="map" latitude="37.77493" longitude="-122.41942">-->
+
+            <!--</google-map> &ndash;&gt;-->
+            <!--</div>-->
+
+            <div style="height: 30px"></div>
+
+            <section horizontal layout flex three style="height: 450px">
+                <div id="profilePic">
+                    <div horizontal layout flex one self-end>
+                        <div vertical layout start-justified id="picImage">
+                            <paper-icon-button><img class="avatar-image" src="/styles/rock_climbing.jpg"/></paper-icon-button>
+                        </div>
+                    </div>
+                </div>
+                <div id="preferences" horizontal layout flex two style="float: right;">
+                    box of interests #'s
+                </div>
+            </section>
+
+
+            <div vertical layout flex two class="buffer"></div>
+            <div class="userMessage" horizontal layout center-justified flex two style="height: 150px;">
+                <input is="core-input" class="userMessageText" type="text" placeholder="What epic experience should I have next?" value="" style="height: 150px; width:78%; border: 1px solid black; background-color: white"/>
+                <input id="submit" type="submit" >
+            </div>
+
+            <div vertical layout flex two class="buffer"></div>
+
+            <div class="container" style="background-color: rgba(54, 144, 235, 0.3)">
+                <div horizontal layout>
+
+                    <div class="messageWrapper">
+                        <section>
+                            <div horizontal layout>
+                                <div flex two></div>
+                                <div flex ten>
+                                    <div vertical layout center-justified id="messageWrapper"></div>
+                                </div>
+                                <div flex two></div>
+                            </div>
+
+                            <div vertical layout class="hero-unit" style=" text-wrap: normal">
+
+                                <blog-element>
+                                    <!--<link rel="import" href="bower_components/polymer-jsonp/polymer-jsonp.html"/>-->
+                                    <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AhcraNy3sgspdHVQUGd2M2Q0MEZnRms3c3dDQWQ3V1E/od6/public/values?alt=json-in-script&callback=" response="{{posts}}"></polymer-jsonp>
+                                </blog-element>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+        <script>
+            $(document).ready(function() {
+                console.log("User profile is ready");
+
+                $('body /deep/ #submit').click(function(){
+                    console.log('clicked');
+                    var messages = document.querySelector('body /deep/.userMessageText').value;
+                    console.log("messages", messages);
+                    $('body /deep/ #messageWrapper').prepend($('<div style="background-color: #006600; height: 200px">').text(messages));
+                    console.log("messages prepended");
+                })
+
+
+            });
+            //
+            //    function messageInput() {
+            //        console.log("clicked");
+            //        var messages = document.querySelector('body /deep/ .userMessageText').value;
+            //        console.log("messages", messages);
+            //        var addMessage = document.querySelector('body /deep/ #messageWrapper');
+            //        console.log("addMessage", addMessage);
+            //        var newMessage = addMessage.prependChild(messages);
+            //        console.log("newMessage", newMessage);
+            //    }
+
+            //
+            //    function get_location(){
+            //        var located = window.navigator.geolocation.getCurrentPosition(
+            //                function show_map(position){
+            //                    console.log("position",JSON.stringify(position));
+            //                    var userlatitude = position.coords.latitude;
+            //                    var userlongitude = position.coords.longitude;
+            //                    var map = document.getElementById("map");
+            //                    map.setAttribute("latitude",userlatitude);
+            //                    map.setAttribute("longitude",userlongitude);
+            //                });
+            //        console.log("located",located);
+            //
+            //        document.addEventListener('click', function(e) {
+            //            var pages = document.querySelector('core-pages');
+            //            pages.selected = (pages.selected + 1) % pages.children.length;
+            //        });
+            //
+            //
+
+            /*}
+             function show_map(position){
+             var latitude = position.coords.latitude;
+             var longitude = position.coords.longitude;
+             var map = document.getElementById("map");
+             map.setAttribute("latitude",latitude);
+             map.setAttribute("longitude",longitude);
+             }*/
+            /*var position = {
+             "timestamp":1416443125278,
+             "coords":{
+             "speed":null,
+             "heading":null,
+             "altitudeAccuracy":null,
+             "accuracy":39,
+             "altitude":null,
+             "longitude":-60.196848,
+             "latitude":46.1427955
+             }
+             };
+             var doc = {
+             "getElementById":function(){
+             console.log("does stuff")
+             }
+             };
+             console.log(document);
+             get_location();*/
+
+
+            var paperInput = CoreStyle.g. // changes the core stylings color of the paper inputs
+                    paperInput = CoreStyle.g.paperInput || {};
+
+            paperInput.labelColor = '#ffa07a';
+            paperInput.cursorColor = '#A7FFEB';
+            paperInput.focusedColor = '#A7FFEB';
+            paperInput.invalidColor = '#ffa07a';
+
+            document.addEventListener('WebComponentsReady',function(){
+
+            });
 
 
 
+        </script>
+        <!--<script src="/bower_components/polymer/polymer.min.js"></script>-->
 
-        <!--<template>-->
-            <!--<style>-->
-                <!--#hero {-->
-                    <!--position: absolute;-->
-                    <!--top: 0;-->
-                    <!--right: 0;-->
-                    <!--width: 50px;-->
-                    <!--height: 300px;-->
-                    <!--background-color: blue;-->
-                <!--}-->
-            <!--</style>-->
-            <!--<div id="hero" hero-id="bar" hero></div>-->
-        <!--</template>-->
-    <!--</polymer-element>-->
 
-    <!--<polymer-element name="x-page-1" noscript>-->
-        <!--<template>-->
-            <!--<style>-->
-                <!--#hero1 {-->
-                    <!--position: absolute;-->
-                    <!--top: 0;-->
-                    <!--left: 0;-->
-                    <!--width: 300px;-->
-                    <!--height: 300px;-->
-                    <!--background-color: orange;-->
-                <!--}-->
-            <!--</style>-->
-            <!--<div id="hero1" hero-id="foo" hero></div>-->
-            <!--<div id="hero2" hero-id="bar" hero></div>-->
-        <!--</template>-->
-    <!--</polymer-element>-->
-
-    <!--<polymer-element name="x-page-2" noscript>-->
-        <!--<template>-->
-            <!--<style>-->
-                <!--#hero1 {-->
-                    <!--position: absolute;-->
-                    <!--top: 200px;-->
-                    <!--left: 300px;-->
-                    <!--width: 300px;-->
-                    <!--height: 300px;-->
-                    <!--background-color: orange;-->
-                <!--}-->
-                <!--#hero2 {-->
-                    <!--background-color: blue;-->
-                    <!--height: 150px;-->
-                    <!--width: 400px;-->
-                <!--}-->
-            <!--</style>-->
-            <!--<!--// The below element is one level of shadow from the core-animated-pages and will-->-->
-            <!--<!--// be transitioned.-->-->
-            <!--<div id="hero1" hero-id="foo" hero></div>-->
-            <!--<!--// The below element contains a hero inside its shadowRoot making it two levels away-->-->
-            <!--<!--// from the core-animated-pages, and will not be transitioned.-->-->
-            <!--<x-el></x-el>-->
-        <!--</template>-->
-    <!--</polymer-element>-->
-
-    <!--<core-animated-pages transitions="hero-transition">-->
-        <!--<x-page-1></x-page-1>-->
-        <!--<x-page-2></x-page-2>-->
-    <!--</core-animated-pages>-->
+    </template>
+</polymer-element>

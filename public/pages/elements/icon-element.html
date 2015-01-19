@@ -1,0 +1,135 @@
+<link type= "text/css" rel= "stylesheet" href="/styles/style.css"/>
+<link rel="import" href="/bower_components/polymer/polymer.html"/>
+<link rel="import" href="/bower_components/core-pages/core-pages.html"/>
+<link rel="import" href="/bower_components/paper-input/paper-input.html"/>
+<link rel="import" href="/bower_components/paper-input/paper-input-decorator.html"/>
+<link rel="import" href="/bower_components/paper-tabs/paper-tabs.html"/>
+<link rel="import" href="/pages/elements/post-card.html"/>
+<link rel="import" href="/pages/elements/top-bar.html"/>
+<link rel="import" href="/pages/elements/location-element.html"/>
+
+<script src="/bower_components/platform/platform.js"></script>
+
+<polymer-element name="icon-element" noscript>
+    <template>
+        <style>
+            img.icon{
+                /*margin-top: -5px;*/
+                height: 40px;
+                width: 40px;
+                margin-bottom: 10px;
+            }
+            p.iconText{
+                margin-bottom: 0;
+
+            }
+            form {
+                font-family: 'Raleway', sans-serif;
+                color: white;
+                font-size: 16px;
+                background-color: rgba(51, 51, 104, .5);
+            }
+
+            core-pages /deep/ .background {
+
+                background-image: url("/styles/shark3.jpg");
+                background-repeat: no-repeat;
+                background-size: 120%;
+                margin-left: -5%;
+                width: 100%
+            }
+
+            core-pages /deep/ .infoWrapper {
+                background-color: rgba(51, 51, 104, .5);
+                width: 100%;
+
+                }
+
+
+        </style>
+        <div horizontal layout self-end>
+            <!--<div flex one></div>-->
+            <div center-justified class="infoWrapper" style="width: 100%">
+                <div vertical layout center-justified>
+                    <div class="infotabs" start center-justified>
+
+                        <paper-tabs selected="{{selected}}">
+                            <paper-tab>
+                                <img self-stretch class="icon" src="/styles/unicorn.png">
+                                <!--</br>-->
+                                <!--<p class="iconText"> Unicorns</p>-->
+                            </paper-tab>
+                            <paper-tab>
+                                <img self-stretch class="icon" src="/styles/places.png">
+                            </paper-tab>
+                            <paper-tab>Favourites</paper-tab>
+                        </paper-tabs>
+
+        <core-pages selected="{{selected}}">
+            <div>
+                <div horizontal layout class="background">
+                    <div flex one class="infoWrapper"></div>
+
+                    <form class="infoWrapper" flex ten two action ="" vertical layout flex>
+
+                        <h1>Your Unicorns</h1>
+                        <p>Unicorns are rare but rewarding! They embody your hopes and dreams. They are things that you want to see and goals you want to acheive</p>
+
+                        <div horizontal layout>
+                            <!--<button id="divingEmy"><img src="/styles/turtle.jpg"/></button>-->
+                            <!--<div flex one></div>-->
+                            <!--<button id="divingEmy"><img src="/styles/climbingturtle.jpg"/></button>-->
+                        </div>
+                        <table>
+                            <tr>
+                                <td>laskdjf</td>
+                                <td>laskdjf</td>
+                            </tr>
+                            <tr>
+                                <td>laskdjf</td>
+                                <td>laskdjf</td>
+                            </tr>
+                            <tr>
+                                <td>laskdjf</td>
+                                <td>laskdjf</td>
+                            </tr>
+                            <tr>
+                                <td>laskdjf</td>
+                                <td>laskdjf</td>
+                            </tr>
+                            <tr>
+                                <td>laskdjf</td>
+                                <td>laskdjf</td>
+                            </tr>
+                        </table>
+
+                    </form>
+                    <div horizontal layout flex one class="infoWrapper"></div>
+                </div>
+            </div>
+
+            <div>
+            <div horizontal layout class="background">
+                <div flex one class="infoWrapper"></div>
+
+                <form class="infoWrapper" flex ten two action ="" vertical layout flex center-justified>
+
+                    <location-element center-center>
+
+                    </location-element>
+                </form>
+                <div horizontal layout flex one class="infoWrapper"></div>
+            </div>
+            </div>
+        </core-pages>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <script>
+        </script>
+
+    </template>
+</polymer-element>

@@ -17,7 +17,6 @@
             h1{
                 color: white;
                 font-family: 'Raleway', sans-serif;
-                font-size:60pt;
                 float: left;
             }
 
@@ -25,7 +24,6 @@
                 color: white;
                 font-family: 'Raleway', sans-serif;
                 font-weight: lighter;
-                font-size: 42pt;
             }
 
 
@@ -38,13 +36,13 @@
             textarea{
                 font-family: 'Raleway', sans-serif;
                 color: white;
-                font-size: 30px;
+                font-size: 16px;
             }
 
            form {
                 font-family: 'Raleway', sans-serif;
                 color: white;
-                font-size: 30px;
+                font-size: 16px;
 
             }
             paper-input-decorator /deep/ .label-text
@@ -140,6 +138,10 @@
                 font-family: 'Raleway', sans-serif;
                 font-size: 24px;
             }
+            img{
+                height: 200px;
+                width: 200px;
+            }
 
 
         </style>
@@ -180,35 +182,54 @@
                                       <div horizontal layout class="infoWrapper">
                                           <div flex one></div>
 
-                                          <form two action ="" flex three style="width: 80%" center-justified>
+                                          <form two action ="" vertical layout flex four style="width: 80%" center-justified>
+
+                                              <h1>What type of EpicEmys are you?</h1>
+
+                                              <div horizontal layout>
+                                                  <button id="divingEmy"><img src="/styles/turtle.jpg"/></button>
+                                                  <div flex one></div>
+                                                  <button id="divingEmy"><img src="/styles/climbingturtle.jpg"/></button>
+                                              </div>
+                                              <div horizontal layout>
+                                                  <h2>Diving D(Emys)</h2>
+                                                  <div flex one></div>
+                                                  <h2>Traversing Turtle</h2>
+                                              </div>
 
 
-                                              <paper-input-decorator id="username" floatingLabel label error= "Please enter a valid email address!">
-                                                  <input id="checkpswd" class="input" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">
-                                              </paper-input-decorator>
 
-                                              <paper-input-decorator  floatingLabel label="Name">
-                                                  <input id="password" class="input" type ="text" is="core-input" value = "">
-                                              </paper-input-decorator>
+                                              <!--<button id="climbingEmy"><img src="/styles/turtle.jpg"/></button>-->
+
+                                              <!--<paper-button><img class="divingEmy" src="/styles/rock_climbing.jpg"/></paper-button>-->
 
 
-                                              <paper-input-decorator id="username" floatingLabel label="City" error= "Please enter a valid email address!">
-                                                  <input id="checkpswd" class="input" type ="text" is="core-input" onblur ="confirm()">
-                                              </paper-input-decorator>
+                                              <!--<paper-input-decorator id="username" floatingLabel label error= "Please enter a valid email address!">-->
+                                                  <!--<input id="checkpswd" class="input" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">-->
+                                              <!--</paper-input-decorator>-->
 
-                                              <paper-input-decorator  floatingLabel label="Interests">
-                                                  <input id="password" type ="text" is="core-input" value = "{{password}}">
-                                              </paper-input-decorator>
-
-
-                                              <paper-input-decorator id="username" floatingLabel label="Confirm Password" error= "Please enter a valid email address!">
-                                                  <input id="checkpswd" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">
-                                              </paper-input-decorator>
+                                              <!--<paper-input-decorator  floatingLabel label="Name">-->
+                                                  <!--<input id="password" class="input" type ="text" is="core-input" value = "">-->
+                                              <!--</paper-input-decorator>-->
 
 
-                                              <paper-input-decorator id="username" floatingLabel label error= "Please enter a valid email address!">
-                                                  <input id="checkpswd" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">
-                                              </paper-input-decorator>
+                                              <!--<paper-input-decorator id="username" floatingLabel label="City" error= "Please enter a valid email address!">-->
+                                                  <!--<input id="checkpswd" class="input" type ="text" is="core-input" onblur ="confirm()">-->
+                                              <!--</paper-input-decorator>-->
+
+                                              <!--<paper-input-decorator  floatingLabel label="Interests">-->
+                                                  <!--<input id="password" type ="text" is="core-input" value = "{{password}}">-->
+                                              <!--</paper-input-decorator>-->
+
+
+                                              <!--<paper-input-decorator id="username" floatingLabel label="Confirm Password" error= "Please enter a valid email address!">-->
+                                                  <!--<input id="checkpswd" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">-->
+                                              <!--</paper-input-decorator>-->
+
+
+                                              <!--<paper-input-decorator id="username" floatingLabel label error= "Please enter a valid email address!">-->
+                                                  <!--<input id="checkpswd" type ="text" is="core-input" onblur ="confirm()" pattern="{{password}}">-->
+                                              <!--</paper-input-decorator>-->
                                           </form>
                                           <div flex one></div>
                                       </div>

@@ -6,47 +6,75 @@
 <link rel="import" href="/bower_components/core-icon-button/core-icon-button.html"/>
 <link rel="import" href="/bower_components/core-item/core-item.html"/>
 <link rel="import" href="/bower_components/paper-button/paper-button.html"/>
+<link rel="import" href="/pages/elements/login-form.html"/>
 
 <polymer-element name="top-bar" noscript>
     <template>
         <style>
+            h2{
+                color: white;
+                font-family: 'Raleway', sans-serif;
+                text-shadow: -1px 0 grey, 0 1px grey, 1px 0 grey, 0 -1px grey;
+                font-weight: lighter;
+                font-size: 24px;
+
+            }
+            form{
+                font-size: 14px;
+            }
+
             core-toolbar{
                 background-color: rgba(0, 191, 165, .5);
-                height: 100px;
+                height: 40px;
             }
             paper-button#signInButton{
                 border: 2px solid black;
-                right: 0;
             }
             div.login{
-                float:right;
-                width: 300px;
+                width: 100px;
                 color: white;
-                font-size: 24px;
+                font-size: 10px;
             }
-            core-icon-button{
-                float: left;
+            /*core-icon-button{*/
+                /*float: left;*/
 
-            }
-            core-icon{
-                float: right;
-            }
+            /*}*/
+            /*core-icon{*/
+                /*float: right;*/
+            /*}*/
 
         </style>
 
-        <div vertical layout style="height: 1%; position: relative"><br></div>
-        <div horizontal layout center-center>
-            <core-toolbar horizontal layout center style="width: 99%;">
-                <core-icon-button icon="menu" on-tap="{{menuAction}}"></core-icon-button>
-                <div flex>EpicEmys</div>
-                <core-icon-button icon="more" on-tap="{{moreAction}}"></core-icon-button>
+        <!--<div vertical layout style="height: 1%; position: relative"><br></div>-->
+        <div horizontal layout>
+            <core-toolbar horizontal layout center style="width: 100%;">
+                <!--<core-icon-button icon="menu" on-tap="{{menuAction}}"></core-icon-button>-->
+                <paper-button id="homeButton" onclick="homepage()" style="color:white; font-size: small;">Navigatio</paper-button>
+                <!--<core-icon-button icon="more" on-tap="{{moreAction}}"></core-icon-button>-->
 
-                <div flex id="login">
-                    <paper-button id="signInButton" onclick="signIn()">Login</paper-button>
+            <div flex style="width: 1300px;"><br></div>
+
+                <div horizontal layout end-justified>
+                    <login-form></login-form>
+
                 </div>
 
+
             </core-toolbar>
-        </div>
+
         <div vertical layout style="height: 20px;"><br></div>
+        </div>
+
+        <script>
+            $('document').ready(function() {
+                console.log("topbar is ready");
+            });
+
+            var homepage = function() {
+                console.log("go to homepage");
+                document.querySelector('app-router').go('/');
+            }
+
+        </script>
     </template>
 </polymer-element>

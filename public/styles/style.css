@@ -26,7 +26,6 @@ core-toolbar{
 h1{
     color: white;
     font-family: 'Raleway', sans-serif;
-    font-size:60pt;
     float: left;
 }
 
@@ -34,7 +33,7 @@ h2{
     color: white;
     font-family: 'Raleway', sans-serif;
     font-weight: lighter;
-    font-size: 42pt;
+
 }
 
 #buttons{
@@ -60,26 +59,22 @@ form{
 textarea{
     font-family: 'Raleway', sans-serif;
     color: white;
-    font-size: 18px;
+
 }
-.login{
-    height: 35%;
-    padding-left: 5%;
-    width: 95%;
-    font-size: 24px;
-    color: white;
-    background-color: rgba(102, 51, 51,.3);
-}
+/*.login{*/
+    /*height: 35%;*/
+    /*padding-left: 5%;*/
+    /*width: 95%;*/
+    /*font-size: 24px;*/
+    /*color: white;*/
+    /*background-color: rgba(102, 51, 51,.3);*/
+/*}*/
 
 paper-checkbox{
     margin-left: 3%;
 }
 
 paper-button{
-    margin-left: 15%;
-    margin-right: 15%;
-    width: 20%;
-    height: 20%;
     border: 3px #00BFA5 solid;
     color: #00BFA5;
     background-color: #A7FFEB;
@@ -91,11 +86,11 @@ paper-button{
     background-color: #00BFA5;
 }
 
-#signUpButton{
-    border: 3px #00BFA5 solid;
-    color: #00BFA5;
-    background-color: #A7FFEB;
-}
+/*#signUpButton{*/
+    /*border: 3px #00BFA5 solid;*/
+    /*color: #00BFA5;*/
+    /*background-color: #A7FFEB;*/
+/*}*/
 
 .checkbox{
     margin-left: 5%;

@@ -10,6 +10,8 @@
     <link rel="import" href="/bower_components/paper-button/paper-button.html"/>
     <link rel="import" href="/pages/elements/post-card.html"/>
     <link rel="import" href="/pages/elements/blog-element.html"/>
+    <link rel="import" href="/pages/elements/location-element.html"/>
+    <link rel="import" href="/pages/elements/icon-element.html"/>
     <link rel="import" href="/bower_components/core-animation/core-animation-group.html"/>
 
 
@@ -20,17 +22,31 @@
 <template>
     <style>
 
-        section#profilePic{
+        div#profilePic{
             background-image: url("/styles/shark3.jpg");
             background-repeat: no-repeat;
             background-size: 100%;
+            width: 90%;
             position: relative;
+            float:left
         }
 
+        shadow-div.button-content{
+            float: left;
+            position: relative;
+        }
+        div#picImage{
+            position: relative;
+            width: 150px;
+
+
+        }
         img.avatar-image{
-            height: 400px;
-            width: 400px;
             border: solid 2px darkblue;
+            float: left;
+            height: 150px;
+            width: 150px;
+
         }
 
         core-toolbar{
@@ -60,70 +76,97 @@
 
         button{
             background-color: #1a237e;
+            height: 10%;
+            width: 10%;
         }
+
         form {
             height: 200px;
             width: 100px;
         }
 
         section#holderUser{
-            background-color: white;
-            margin-bottom: 0;
+            background-image: url("/styles/underwater2.jpg");
+            background-repeat: no-repeat;
+            background-size: 100%;
+            margin-top: -40px;
+            /*margin-bottom: -40px;*/
 
+        }
+
+        div.container{
+            background-color: transparent;
+            background-image: url("/styles/underwater-light-beams-jpg.jpg");
+            background-repeat: no-repeat;
+            background-size: 100%;
+            margin-bottom: -40px;
+
+        }
+
+        div#preferences{
+            float: right;
+            position: relative;
+            height: 300px;
+            border: 2px groove ;
+            background-color: rgba(0, 191, 165, .5);
         }
 
         google-map {
             margin-top: -2%;
             display: block;
-            height: 700px;
-            width: 100%;
+            height: 300px;
+            width: 300px;
+        }
+
+        paper-button /deep/::shadow div.button-content{
+            float:left;
         }
 
        div.buffer{
-           height: 20px;
+           height: 10px;
            background-color: transparent;
        }
-
-        /*blog-element /deep/.row{*/
-            /*background-color:rgba(102, 51, 51,.3);*/
-        /*}*/
 
     </style>
 
 
 <section id="holderUser" vertical layout>
-        <!--<div id="map" flex self-stretch four vertical layout style="height: 40%">-->
-            <!--&lt;!&ndash;<google-map id="map" latitude="37.77493" longitude="-122.41942">-->
 
-            <!--</google-map> &ndash;&gt;-->
-        <!--</div>-->
+    <div style="height: 80px"></div>
 
-        <section id="profilePic" horizontal layout flex three style="height: 850px">
-            <div horizontal layout flex one self-end>
-                <div end-justified style="height: 400px; width: 300px; background-color: transparent"></div>
-                <div vertical layout id="picImage">
-
+        <section horizontal layout style="height: 400px">
+            <div horizontal layout style="width: 1%"></div>
+            <div horizontal layout flex ten id="profilePic">
+                <div horizontal layout flex self-end id="picImage">
                     <paper-button><img class="avatar-image" src="/styles/rock_climbing.jpg"/></paper-button>
+                    <icon-element flex self-end></icon-element>
                 </div>
             </div>
+            <div horizontal layout style="width: 1%"></div>
+            <div id="preferences" horizontal layout flex two style="float: right;">
+                <p style="color:white; font-family:awesome">MY UNICORNS</p>
+            </div>
+            <div horizontal layout style="width: 1%"></div>
         </section>
 
+
         <div vertical layout flex two class="buffer"></div>
-        <div class="userMessage" horizontal layout center-justified flex two style="height: 150px;">
-                <input is="core-input" class="userMessageText" type="text" placeholder="What are you thinking?" value="" style="height: 150px; width:78%; border: 1px solid black; background-color: white"/>
+
+        <div class="userMessage" horizontal layout center-justified flex two style="height: 50px;">
+                <input is="core-input" class="userMessageText" type="text" placeholder="What epic experience should I have next?" value="" style="height: 50px; width:78%; border: 1px solid black; background-color: white"/>
                 <input id="submit" type="submit" >
         </div>
 
         <div vertical layout flex two class="buffer"></div>
 
-        <div class="container" style="background-color: rgba(54, 144, 235, 0.3)">
+        <div class="container" style="background-color: transparent">
             <div horizontal layout>
 
                 <div class="messageWrapper">
                     <section>
                     <div horizontal layout>
-                        <div flex two></div>
-                        <div flex ten>
+                        <div flex one></div>
+                        <div flex eight>
                             <div vertical layout center-justified id="messageWrapper"></div>
                         </div>
                         <div flex two></div>
@@ -131,10 +174,13 @@
 
                     <div vertical layout class="hero-unit" style=" text-wrap: normal">
 
-                        <blog-element>
+                        <blog-element style="background-color: transparent">
                             <!--<link rel="import" href="bower_components/polymer-jsonp/polymer-jsonp.html"/>-->
                             <polymer-jsonp auto url="https://spreadsheets.google.com/feeds/list/0AhcraNy3sgspdHVQUGd2M2Q0MEZnRms3c3dDQWQ3V1E/od6/public/values?alt=json-in-script&callback=" response="{{posts}}"></polymer-jsonp>
                         </blog-element>
+                        <!--<location-element>-->
+
+                        <!--</location-element>-->
                     </div>
                     </section>
                 </div>
@@ -153,6 +199,7 @@
             $('body /deep/ #messageWrapper').prepend($('<div style="background-color: #006600; height: 200px">').text(messages));
             console.log("messages prepended");
         })
+
 
 
     });

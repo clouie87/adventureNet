@@ -1,0 +1,147 @@
+
+<link type= "text/css" rel= "stylesheet" href="/styles/style.css"/>
+<!--<link rel="import" href="/bower_components/polymer/polymer.min.js"/>-->
+<link rel="import" href="/bower_components/polymer/polymer.html"/>
+<link rel="import" href="/bower_components/core-item/core-item.html"/>
+<link rel="import" href="/bower_components/core-input/core-input.html"/>
+<link rel="import" href="/bower_components/core-menu/core-menu.html"/>
+<link rel="import" href="/bower_components/polymer-jsonp/polymer-jsonp.html"/>
+<link rel="import" href="/bower_components/google-map/google-map.html"/>
+<link rel="import" href="/bower_components/paper-button/paper-button.html"/>
+<link rel="import" href="/pages/elements/post-card.html"/>
+<link rel="import" href="/pages/elements/blog-element.html"/>
+<link rel="import" href="/bower_components/core-animation/core-animation-group.html"/>
+
+
+<script src="/bower_components/platform/platform.js"></script>
+
+
+<polymer-element name="location-element" attributes="" noscript>
+    <template>
+    <style>
+        google-map {
+            margin-top: 7%;
+            display: block;
+            height: 300px;
+            width: 300px;
+        }
+    </style>
+    <section id="mapS">
+        <google-map id="map" latitude="37.77493" longitude="-122.41942">
+
+        </google-map>
+    </section>
+        <div>
+            <paper-button id="placeButton" onclick="newPlace()" style="font-size: 10pt">Add a new Place!</paper-button>
+
+    <section id="questions">
+        <paper-input-decorator  floatingLabel label="Where are you?">
+            <input id="placename" class="input" type ="text" is="core-input" onblur="addPlaceName()" value = "">
+        </paper-input-decorator>
+
+        <paper-input-decorator  floatingLabel label="What City are you in?">
+            <input id="city" class="input" type ="text" is="core-input" onblur="addPlace()" value = "">
+        </paper-input-decorator>
+
+        <paper-input-decorator  floatingLabel label="What Country are you in?">
+            <input id="country" class="input" type ="text" is="core-input" onblur="addCountry()" value = "">
+        </paper-input-decorator>
+
+        <paper-button id="addPlaceNow" onclick="addPlaceNow()" style="font-size: 10pt">Add this Place!</paper-button>
+
+
+
+        <paper-input-decorator  floatingLabel label="Who did you dive with?">
+            <input id = "diveShop" class="input" type ="text" is="core-input" onblur="addDiveShop()" value = "">
+        </paper-input-decorator>
+
+        <paper-input-decorator  floatingLabel label="What site did you see?">
+            <input id="sites" class="input" type ="text" is="core-input" onblur="addSite()" value = "">
+        </paper-input-decorator>
+
+
+        <!--<paper-button id="addPlace" style="font-size: 10pt">ADD NOW!</paper-button> <--onclick="addPlace()"&ndash;&gt;-->
+
+
+    </section>
+
+    <script>
+
+        var socket =io();
+
+    var get_location = function() {
+        var located = window.navigator.geolocation.getCurrentPosition(
+                function show_map(position) {
+                    console.log("position", JSON.stringify(position));
+                    var userlatitude = position.coords.latitude;
+                    var userlongitude = position.coords.longitude;
+                    var map = document.querySelector('body /deep/ google-map#map');
+                    map.setAttribute("latitude", userlatitude);
+                    map.setAttribute("longitude", userlongitude);
+                });
+        console.log("located", located);
+
+
+        document.addEventListener('click', function (e) {
+            var pages = document.querySelector('core-pages');
+            pages.selected = (pages.selected + 1) % pages.children.length;
+        });
+    };
+    document.querySelector('body /deep/ #questions').setAttribute('hidden', 'hidden');
+    var newPlace = function(){
+        console.log('add a new Place clicked');
+        document.querySelector('body /deep/ #questions').removeAttribute('hidden');
+        document.querySelector('body /deep/ #mapS').setAttribute('hidden', 'hidden');
+    };
+
+    var addPlace = function () {
+        console.log("new place added");
+        var addPlace = document.querySelector('body /deep/#city').value;
+        console.log(addPlace +" was added");
+        socket.emit('addPlace', addPlace);
+    };
+
+    var addPlaceName = function () {
+        console.log("new placename added");
+        var addPlaceName = document.querySelector('body /deep/#placename').value;
+        console.log(addPlaceName +" was added");
+        socket.emit('addPlaceName', addPlaceName);
+    };
+
+    var addCountry = function () {
+        console.log("new country added");
+        var addCountry = document.querySelector('body /deep/#country').value;
+        console.log(addCountry +" was added");
+        socket.emit('addCountry', addCountry);
+    };
+
+    var addPlaceNow = function() {
+//        console.log();
+        var addPlace = document.querySelector('body /deep/#city').value;
+        var addPlaceName = document.querySelector('body /deep/#placename').value;
+        var addCountry = document.querySelector('body /deep/#country').value;
+        console.log(addPlaceName + addPlace + addCountry);
+        socket.emit('addPlaceNow', addPlace, addPlaceName, addCountry);
+    };
+
+    var addDiveShop= function () {
+        console.log("a new dive shop was added");
+        var addDiveShop = document.querySelector('body /deep/#diveShop').value;
+        console.log(addDiveShop + " was added to DiveShops");
+        socket.emit('addDiveShop', addDiveShop);
+    };
+
+    var addSite= function () {
+        console.log("a new site was added");
+        var addSite = document.querySelector('body /deep/#sites').value;
+        console.log(addSite + " was added to sites");
+        socket.emit('addSite', addSite);
+    };
+
+    console.log(get_location());
+
+
+
+</script>
+</template>
+</polymer-element>

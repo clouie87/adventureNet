@@ -21,7 +21,6 @@
     color: white;
     font-family: 'Raleway', sans-serif;
     text-shadow: -2px 0 grey, 0 2px grey, 2px 0 grey, 0 -2px grey;
-    font-size:52pt;
     font-weight: bold;
     margin-bottom:0;
     }
@@ -31,78 +30,66 @@
     font-family: 'Raleway', sans-serif;
     text-shadow: -2px 0 grey, 0 2px grey, 2px 0 grey, 0 -2px grey;
     font-weight: lighter;
-    font-size: 48pt;
+        font-size: 24px;
+
     }
 
     div.buffer {
-        height: 400px;
+        height: 200px;
     }
 
-    #buttons{
-    margin-top: 5%;
-    margin-left: 10%;
-    margin-right: 10%;
-    }
 
     p{
     margin-left: 2%;
     color: white;
     font-family: 'Raleway', sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     }
 
     div.textContainer{
     border: 3px solid #636363;
-    background-color: rgba(102,51,51, .4);
-    width: 80%;
+    background-color: rgba(51, 51, 104, .6);
+    /*width: 70%;*/
     }
-
-    /*div#introContainer{*/
-        /*background-color: orange;*/
-    /*}*/
-
-    /*form{*/
-    /*margin-top: 2%;*/
-    /*margin-left: 10%;*/
-    /*width: 80%;*/
-    /*}*/
 
     div#loginContainer{
         font-family: 'Raleway', sans-serif;
         color: white;
-        font-size: 32px;
+        /*border: 3px solid #636363;*/
+        /*background-color: rgba(51, 51, 104, .6);*/
     }
 
-    textarea{
-    font-family: 'Raleway', sans-serif;
-    color: white;
-    font-size: 18px;
-    }
+    /*textarea{*/
+    /*font-family: 'Raleway', sans-serif;*/
+    /*color: white;*/
+    /*}*/
 
     paper-input-decorator /deep/ .label-text
     paper-input-decorator /deep/ .error {
         /* inline label,  floating label, error message and error icon color when the input is unfocused */
         color: #A7FFEB;
         font-family: 'Raleway', sans-serif;
-        font-size: 40px;
     }
 
     paper-input-decorator /deep/ .label-text,
     paper-input-decorator /deep/ .error {
         /* inline label,  floating label, error message and error icon color when the input is unfocused */
         color: white;
-        font-size: 18px;
     }
 
     paper-input-decorator /deep/ ::-webkit-input-placeholder {
         /* platform specific rules for placeholder text */
         color: white;
+        font-size: 14px;
     }
     paper-input-decorator /deep/ ::-moz-placeholder {
         color: white;
+        font-size: 14px;
+
     }
     paper-input-decorator /deep/ :-ms-input-placeholder {
         color: white;
+        font-size: 14px;
     }
 
     paper-input-decorator /deep/ .unfocused-underline {
@@ -113,6 +100,7 @@
     paper-input-decorator[focused] /deep/ .floating-label .label-text {
         /* floating label color when the input is focused */
         color: #A7FFEB;
+        font-size: 10px;
     }
 
     paper-input-decorator /deep/ .focused-underline {
@@ -129,7 +117,7 @@
     paper-input-decorator[focused] /deep/ .error {
         /* floating label, error message nad error icon color when the input is invalid and focused */
         color: white;
-        font-size: 18px;
+        font-size: 10px;
 
     }
 
@@ -139,51 +127,24 @@
         background-color: white;
     }
 
-    /*.login{*/
-    /*height: 35%;*/
-    /*padding-left: 5%;*/
-    /*width: 95%;*/
-    /*font-size: 24px;*/
-    /*color: white;*/
-    /*background-color: rgba(102, 51, 51,.3);*/
-    /*}*/
 
-    paper-checkbox{
-    margin-left: 3%;
+    paper-input-decorator{
+        /*border-right: 2px solid #A7FFEB;*/
+        padding-left: 10px;
+        padding-right: 10px;
+
     }
+
 
     paper-button#joinButton{
-    margin-left: 15%;
-    margin-right: 15%;
-    width: 30%;
-    height: 15%;
-    border: 3px #00BFA5 solid;
-    color: #00BFA5;
-    background-color: #A7FFEB;
-    font-size: 25px;
-    font-weight: bolder;
-    }
-
-    #logInButton{
-    border: 3px #A7FFEB solid;
+    border: 2px #A7FFEB solid;
     color: #A7FFEB;
     background-color: #00BFA5;
+    font-size: 10pt;
+    font-weight: bolder;
+    height:35px;
     }
 
-    #signUpButton{
-    border: 3px #00BFA5 solid;
-    color: #00BFA5;
-    background-color: #A7FFEB;
-    }
-
-    .checkbox{
-    margin-left: 5%;
-    margin-top: 15%;
-    margin-bottom: 15%;
-    color: white;
-    float: left;
-    border: 1px solid white;
-    }
     paper-checkbox::shadow #checkbox.checked {
     border-color: white;
     }
@@ -200,49 +161,24 @@
     <div class="buffer"></div>
 
     <!--the row across the page where the purple box lives-->
-    <div horizontal layout>
-        <div flex one></div> <!--the buffer on the left side before the purple box-->
+    <div horizontal layout center-center>
+        <div flex two></div> <!--the buffer on the left side before the purple box-->
 
         <!--everything in the purple box-->
 
-        <div class="textContainer" horizontal layout flex four>
-            <div class="divider" flex one></div>
+        <div class="textContainer" horizontal layout flex four center-center>
+            <!--<div class="divider" horizontal flex one></div>-->
 
-            <div id="introContainer" vertical layout flex four>
-                <div flex one>
-                    <br>
-                    <br>
-                </div>
-                <h1 flex one>Title of Social Network</h1>
-                <h2 flex two id="introBox">Get Connected to your friends, or
-                    others that have similar interests
-                    as you! Find the best places to
-                    explore, and the best people to explore them with!</h2>
-                <div flex two>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                </div>
-            </div>
-
-
-            <div class="dividerTwo" flex one></div>
-
-            <div horizontal layout flex three>
-                <div id="userContainer" vertical layout flex four center>
-                    <div>
-                        <br>
-                        <br>
+            <div vertical layout flex six center-center self-stretch>
+                <div id="userContainer" self-stretch center-center>
+                    <div horizontal layout class="title">
+                        <div flex one></div>
+                        <h1>Dive Into your next Exploration!</h1>
+                        <div flex one></div>
                     </div>
-                    <h1>Dive Into EpicEmys!</h1>
-                    <!--<div id="buttons" horizontal layout flex center-justified>-->
-                        <!--<paper-button id="logInButton" flex onclick="showLogin()">Login</paper-button>-->
-                        <!--<paper-button id="signUpButton" flex onclick="showSignUp()">Signup</paper-button>-->
-                    <!--</div>-->
 
-                    <div id="loginContainer" self-stretch vertical layout center-justified>
-                        <form vertical layout self-stretch>
+                    <div id="loginContainer" horizontal layout center-center>
+                        <form horizontal layout self-stretch center-center>
 
                             <paper-input-decorator id="email" error= "Please enter a valid email address!" floatingLabel label="Email Address">
                                 <input is="core-input" id="usrEmail" type ="text" onblur="validateEmail()" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">
@@ -257,27 +193,16 @@
                             </paper-input-decorator>
 
 
-                            <div hidden id="stayLogin" horizontal layout>
-                                <paper-checkbox horizontal layout center></paper-checkbox>
-                                <p vertical layout start>Keep me logged in</p>
-                            </div>
+                            <paper-button id="joinButton" onclick="join()" style="font-size: 10pt">DIVE IN</paper-button>
 
-                            <!--<div horizontal layout flex one></div>-->
                         </form>
                     </div>
-                    <div horizontal layout flex one self-stretch></div>
-                    <div horizontal layout flex one center-justified self-center>
-                        <!--<paper-button hidden id="signInButton" onclick="signIn()">Login</paper-button>-->
-                        <!--<a is="pushstate-anchor" href="/#/user-profile">--><paper-button id="joinButton" onclick="join()">Join</paper-button>
-                    </div>
-
-                    <div horizontal layout flex one self-stretch></div>
                 </div>
-                <div flex one></div>
-                <!--<div class="divider" flex three></div>-->
+                <div class="divider" horizontal flex one></div>
             </div>
+            <!--<div class="divider" horizontal flex one></div>-->
         </div>
-        <div flex one></div>
+        <div flex two></div>
     </div>
 </div>
 
@@ -312,7 +237,7 @@
 
             var join = function () {
                 console.log('joined');
-                document.querySelector('app-router').go('/user-info');
+                document.querySelector('app-router').go('/user-profile');
 
             };
 
@@ -342,6 +267,7 @@
             paperInput.cursorColor = '#A7FFEB';
             paperInput.focusedColor = '#A7FFEB';
             paperInput.invalidColor = '#ffa07a';
+
 
 
     </script>
