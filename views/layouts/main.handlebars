@@ -23,7 +23,7 @@
     <title>Navigatio</title>
 
     <!-- Latest compiled and minified CSS -->
-    <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="/styles/style.css">
 
@@ -42,7 +42,7 @@
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=295897893929835&version=v2.0";
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=295897893929835&version=v2.0";;
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 </script>
@@ -120,6 +120,21 @@
 
     //======================== FB LOGIN INFORMATION ==============================================//
 
+
+    (function(d, debug){
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
+        ref.parentNode.insertBefore(js, ref);
+    }(document, /*debug*/ false));
+
+    function shareOnFb(action, msg){
+        FB.ui({
+            method: action,
+            message: msg
+        });
+    }
     // This is called with the results from from FB.getLoginStatus().
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
@@ -143,9 +158,9 @@
         }
     }
 
-    // This function is called when someone finishes with the Login
-    // Button.  See the onlogin handler attached to it in the sample
-    // code below.
+//    This function is called when someone finishes with the Login
+//    Button.  See the onlogin handler attached to it in the sample
+//    code below.
     function checkLoginState() {
         FB.getLoginStatus(function(response) {
             statusChangeCallback(response);
@@ -161,17 +176,17 @@
             version    : 'v2.1' // use version 2.1
         });
 
-        // Now that we've initialized the JavaScript SDK, we call
-        // FB.getLoginStatus().  This function gets the state of the
-        // person visiting this page and can return one of three states to
-        // the callback you provide.  They can be:
-        //
-        // 1. Logged into your app ('connected')
-        // 2. Logged into Facebook, but not your app ('not_authorized')
-        // 3. Not logged into Facebook and can't tell if they are logged into
-        //    your app or not.
-        //
-        // These three cases are handled in the callback function.
+//        Now that we've initialized the JavaScript SDK, we call
+//        FB.getLoginStatus().  This function gets the state of the
+//        person visiting this page and can return one of three states to
+//        the callback you provide.  They can be:
+//
+//        1. Logged into your app ('connected')
+//        2. Logged into Facebook, but not your app ('not_authorized')
+//        3. Not logged into Facebook and can't tell if they are logged into
+//            your app or not.
+//
+//        These three cases are handled in the callback function.
 
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected'){
@@ -196,6 +211,8 @@
             console.log('Successful login for: ' + response.name);
             document.getElementById('status').innerHTML =
                     'Thanks for logging in, ' + response.name + '!';
+            console.log(response);
+            console.log(response.email);
             console.log(JSON.stringify(response));
             console.log(response)
         });

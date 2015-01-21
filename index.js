@@ -152,21 +152,22 @@ passport.use('local-signup', new LocalStrategy(
 	}
 ));
 
-//var User = '';
-//
-//passport.use(new FacebookStrategy({
-//		clientID: FACEBOOK_APP_ID,
-//		clientSecret: FACEBOOK_APP_SECRET,
-//		callbackURL: 'http://localhost:3000/auth/facebook/callback'
-//
-//	},
-//	function(accessToken, refreshToken, profile, done) {
-//		User.findOrCreate(profile, function(err, user) {
-//		if (err) { return done(err); }
-//		done(null, user);
-//	});
-//	}
-//));
+
+
+passport.use(new FacebookStrategy({
+		clientID: FACEBOOK_APP_ID,
+		clientSecret: FACEBOOK_APP_SECRET,
+		callbackURL: 'http://localhost:3000/auth/facebook/callback'
+
+	},
+	function(accessToken, refreshToken, profile, done) {
+		console.log(profile);
+		//User.findOrCreate(profile, function(err, user) {
+	//	if (err) { return done(err); }
+	//	done(null, user);
+	//});
+	}
+));
 
 //================= ROUTES STUFF ====================//
 
