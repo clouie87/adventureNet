@@ -6,6 +6,8 @@
     <link rel="import" href="/bower_components/paper-checkbox/paper-checkbox.html"/>
     <link rel="import" href="/bower_components/paper-input/paper-input.html"/>
     <link rel="import" href="/bower_components/paper-input/paper-input-decorator.html"/>
+    <link rel="import" href="/pages/elements/signin-element.html"/>
+
 
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
@@ -168,7 +170,7 @@
 
         <div class="textContainer" horizontal layout flex four center-center>
             <!--<div class="divider" horizontal flex one></div>-->
-
+<!--maybe want to move this to an element?-->
             <div vertical layout flex six center-center self-stretch>
                 <div id="userContainer" self-stretch center-center>
                     <div horizontal layout class="title">
@@ -179,6 +181,7 @@
 
                     <div id="loginContainer" horizontal layout center-center>
                         <form horizontal layout self-stretch center-center>
+                            <signin-element> </signin-element>
 
                             <paper-input-decorator id="email" error= "Please enter a valid email address!" floatingLabel label="Email Address">
                                 <input is="core-input" id="usrEmail" type ="text" onblur="validateEmail()" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">
