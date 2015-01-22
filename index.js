@@ -19,6 +19,7 @@ var app = express();// originally var app = require('express')(); which i think 
 var http = require('http').Server(app);
 var io= require('socket.io')(http); //after downloading the socket.io we need to state the var we initialize the (socket.io)
 //and pass it through the http object\
+var request = require('request');
 
 app.use('/styles', express.static(__dirname +'/styles'));
 app.use(express.static(__dirname +'/public'));
@@ -30,6 +31,7 @@ var userCount = 0;
 
 var FACEBOOK_APP_ID ='295897893929835';
 var FACEBOOK_APP_SECRET = '016c48478907f77a428e2dfb5724edf7';
+
 
 //============== POSTGRES  STUFF ====================//
 
@@ -152,22 +154,36 @@ passport.use('local-signup', new LocalStrategy(
 	}
 ));
 
+//==================FACEBOOK HTTP STUFF ==================//
+//request({
+//	uri: 'https://www.facebook.com/dialog/oauth?client_id=295897893929835&redirect_uri=https://www.facebook.com/connect/login_success.html#access_token=ACCESS_TOKEN'
+//});
+//
+//request({
+//	uri: 'https://graph.facebook.com/oauth/access_token?client_id=295897893929835&redirect_uri=https://www.facebook.com/connect/login_success.html&client_secret=016c48478907f77a428e2dfb5724edf7&code=ACCESS_TOKEN',
+//	method: 'GET'
+//});
 
-
-passport.use(new FacebookStrategy({
-		clientID: FACEBOOK_APP_ID,
-		clientSecret: FACEBOOK_APP_SECRET,
-		callbackURL: 'http://localhost:3000/auth/facebook/callback'
-
-	},
-	function(accessToken, refreshToken, profile, done) {
-		console.log(profile);
+//GET (https://graph.facebook.com/oauth/access_token?client_id={app-id}
+//	&redirect_uri={redirect-uri}
+//	&client_secret={app-secret}
+//	&code={code-parameter}
+//passport.use(new FacebookStrategy({
+//		clientID: FACEBOOK_APP_ID,
+//		clientSecret: FACEBOOK_APP_SECRET,
+//		callbackURL: 'http://localhost:3000/auth/facebook/callback'
+//
+//	},
+//
+//	function(accessToken, refreshToken, profile, done) {
+//		console.log(profile);
+//	}
 		//User.findOrCreate(profile, function(err, user) {
 	//	if (err) { return done(err); }
 	//	done(null, user);
 	//});
-	}
-));
+	//}
+//));
 
 //================= ROUTES STUFF ====================//
 
@@ -186,11 +202,11 @@ app.get('/signin', function(req, res){
 //	res.render('homepage');
 //});
 
-app.get('/auth/facebook', passport.authenticate('facebook'));
-
-app.get('/auth/facebook/callback',
-	passport.authenticate('facebook', { successRedirect: '/',
-		failureRedirect: '/login' }));
+//app.get('/auth/facebook', passport.authenticate('facebook'));
+//
+//app.get('/auth/facebook/callback',
+//	passport.authenticate('facebook', { successRedirect: '/',
+//		failureRedirect: '/login' }));
 
 //app.get('/auth/facebook',
 //	passport.authenticate('facebook'), //{ scope: 'public_profile,email' }
@@ -241,6 +257,56 @@ io.on('connection', function(socket) { // then listen to the connection event fo
 	//var currentUsername = "";
 	console.log("Someone connected there are", userCount, "users");
 	//socket.emit("users", users);
+
+	//====================== USERS TABLE ================//S
+
+
+	socket.on('userName', function(name){
+		console.log("Name: "+ name )
+	});
+
+	socket.on('last_name', function(last_name){
+		console.log("Last Name: " + last_name)
+	});
+
+	socket.on('email', function(email){
+		console.log("Email: "+ email)
+	});
+
+	socket.on('gender', function(gender){
+		console.log("Gender: "+ gender)
+	});
+
+	socket.on('photo', function(photo){
+		console.log("photo: "+ photo)
+	});
+
+	socket.on('newUser', function(name, photo, last_name, email, gender) {
+		var client = new pg.Client(conString);
+		client.connect(function(err) {
+			if(err) {
+				return console.error('could not connect to postgres', err);
+			}
+			client.query('INSERT INTO users (name, photo, last_name, email, gender) VALUES ($1, $2, $3, $4, $5)', [name, photo, last_name, email, gender], function (err, result) {
+				if(err) {
+					return console.error('error running query', err);
+				}
+				// return the client to the connection pool for other requests to reuse
+				console.log(name + " " + photo + " " + last_name + " " + email + " " + gender + " " + "is now added to useres table");
+				client.end();
+				//res.writeHead(200, {'content-type': 'text/plain'});
+				//res.end('You are visitor number ' + result.rows[0].count);
+
+				//alert('done!!!');
+			});
+			console.log(name + " " + last_name + " " + email + " " + gender + " " + "is now added to users table");
+		});
+	});
+
+	//=======================END USER TABLE =============================//
+
+	//=========================NEW PLACE TABLE ==========================//
+
 
 	socket.on('addPlace', function(cityPlace){
 		console.log(cityPlace+" is a new place that has been added");

@@ -22,12 +22,6 @@
   <!--this is the home page text box with different signups part! It will take Polymer functions but is sad to do it... -->
     <div vertical layout center-center class="textContainer">
         <h1>Dive Into your next Adventure!</h1>
-        <!--<p>We're using passport.js to demonstrate user authentication. Please sign-in with your Local, Twitter, Google, or Facebook account to view your profile.</p>-->
-
-        <!--<div id="local" class="collapse">-->
-            <!--<a data-toggle="collapse" href="#local-sign-in" class="btn btn-default btn-md" role="button">I already have an account</a>-->
-            <!--<a data-toggle="collapse" href="#local-reg" class="btn btn-default btn-md" role="button">I need to make an account</a>-->
-        <!--</div>-->
 
         <form horizontal layout id="local-sign-in" action="/login" method="post">
             <div>
@@ -68,32 +62,18 @@
         <a data-toggle="collapse" href="#local" class="btn btn-warning btn-lg" role="button"><span class="glyphicon glyphicon-user"></span> Sign in Locally</a>
         <a href="/auth/twitter" class="btn btn-info btn-lg" role="button"><span class="glyphicon glyphicon-user"></span> Sign in with Twitter</a>
         <a href="/auth/google" class="btn btn-danger btn-lg" role="button"><span class="glyphicon glyphicon-user"></span> Sign in with Google</a>
-        <a href="/auth/facebook" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-user"></span> Sign in with Facebook</a>
-        <!--<a href="/auth/facebook" class="btn btn-primary btn-lg" role="button" scope="public_profile,email" onlogin="checkLoginState();"><span class="glyphicon glyphicon-user"></span> Sign in with Facebook-->
-            <!--scope="public_profile,email" onlogin="checkLoginState();"-->
-        <!--</a>-->
-        <!--<a href="/auth/facebook" class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false">-->
-          <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-          </fb:login-button>
-        <div id="status">
-        </div>
+        <div class="btn btn-primary btn-lg" role="button" onclick="checkFBLogin()"><span class="glyphicon glyphicon-user"></span> Sign in with Facebook</div>
 
-          <div>
-        <fb:login-button data-size="xlarge" data-max-rows="1" scope="public_profile,email" onlogin="checkLoginState();">
-        </fb:login-button>
-
-          </div>
+        <!--<fb:login-button data-size="xlarge" data-max-rows="1" scope="public_profile,email,user_friends" onlogin="checkLoginState();">-->
+        <!--</fb:login-button>-->
+      </p>
 
         <div id="status"> <!-- need this for sure! it checks if i'm logged in or not and then runs some scripts-->
         </div>
 
-        <!--<div class="fb-login-button" data-size="xlarge"></div>-->
-        <!--<a href="/auth/facebook" class="fb-login-button" data-max-rows="1" data-size="xlarge" scope="public_profile,email" onlogin="checkLoginState();">-->
-          <!--<fb:login-button data-size="xlarge" data-max-rows="1" scope="public_profile,email" onlogin="checkLoginState();">-->
-          <!--</fb:login-button>-->
-        <!--<div id="status"> <!-- need this for sure! it checks if i'm logged in or not and then runs some scripts-->
-        <!--</div></a>-->
-      </p>
+        <!--<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true"></div>-->
+
+        <!--<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="true" data-auto-logout-link="true"></div>-->
     </div>
     <!--<div class="jumbotron">-->
         <!--<div class="textContainter">-->

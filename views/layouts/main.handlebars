@@ -42,7 +42,7 @@
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=295897893929835&version=v2.0";;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=295897893929835&version=v2.0";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 </script>
@@ -102,10 +102,12 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+<script src="/socket.io/socket.io.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>-->
+
 
 <script>
 
@@ -119,6 +121,9 @@
     paperInput.invalidColor = '#ffa07a';
 
     //======================== FB LOGIN INFORMATION ==============================================//
+
+    var socket =io();
+        console.log('connection');
 
 
     (function(d, debug){
@@ -135,6 +140,7 @@
             message: msg
         });
     }
+
     // This is called with the results from from FB.getLoginStatus().
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
@@ -158,18 +164,42 @@
         }
     }
 
-//    This function is called when someone finishes with the Login
-//    Button.  See the onlogin handler attached to it in the sample
-//    code below.
+    // This function is called when someone finishes with the Login
+    // Button.  See the onlogin handler attached to it in the sample
+    // code below.
     function checkLoginState() {
         FB.getLoginStatus(function(response) {
             statusChangeCallback(response);
         });
     }
 
+    function checkFBLogin() {
+        FB.login(function(response){
+            console.log(response);
+            if (response.status === 'connected') {
+                console.log("the token is: " + response.authResponse.accessToken);
+                // Logged into your app and Facebook.
+
+            } else if (response.status === 'not_authorized') {
+                // The person is logged into Facebook, but not your app.
+            } else {
+                // The person is not logged into Facebook, so we're not sure if
+                // they are logged into this app or not.
+            }
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            });
+
+       },
+            {
+                scope: 'public_profile, email, user_friends'
+            });
+
+    }
+
     window.fbAsyncInit = function() {
         FB.init({
-            appId      : '295897893929835', // this is my appID that I created with facebook dev
+            appId      : '295897893929835',
             cookie     : true,  // enable cookies to allow the server to access
                                 // the session
             xfbml      : true,  // parse social plugins on this page
@@ -188,35 +218,94 @@
 //
 //        These three cases are handled in the callback function.
 
+
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected'){
                 //we want to console the token so that we can send this string to the server
                 //the token is a specific id for the user, and gets passed to each of the apis
                 //it proves that a specific person is using a specific app
                 //we send it to the server so the server can access that users information when needed
-                console.log(response.authResponse.accessToken);
+                console.log("the token is: " + response.authResponse.accessToken);
             }
             statusChangeCallback(response);
         });
 
+//
+//        FB.login(function(response){
+//            console.log(response);
+////            if (response.status === 'connected') {
+////                // Logged into your app and Facebook.
+////
+////            } else if (response.status === 'not_authorized') {
+////                // The person is logged into Facebook, but not your app.
+////            } else {
+////                // The person is not logged into Facebook, so we're not sure if
+////                // they are logged into this app or not.
+////            }
+//
+//       }, {scope: 'public_profile,email,user_friends'});
+
     };
+
+    // Load the SDK asynchronously
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 
 
     // Here we run a very simple test of the Graph API after login is
     // successful.  See statusChangeCallback() for when this call is made.
     function testAPI() {
         console.log('Welcome!  Fetching your information.... ');
+
         FB.api('/me', function(response) {
 
             console.log('Successful login for: ' + response.name);
             document.getElementById('status').innerHTML =
                     'Thanks for logging in, ' + response.name + '!';
             console.log(response);
-            console.log(response.email);
+
+
             console.log(JSON.stringify(response));
-            console.log(response)
+            console.log(response);
+
+
+        var userName = response.first_name;
+        socket.emit('userName', userName);
+
+        var last_name = response.last_name;
+        socket.emit('last_name', last_name);
+
+        var email = response.email;
+        socket.emit('email', email);
+
+        var gender = response.gender;
+        socket.emit('gender', gender);
+
+        var photo = response.avatar;
+        socket.emit('photo', photo);
+
+        var newUser = function (userName, photo, last_name, email, gender) {
+            console.log(userName + " " + last_name + " " + email + " " + gender + " " + "is now added");
+            socket.emit('newUser', userName, photo, last_name, email, gender);
+        };
+            newUser(userName, photo, last_name, email, gender);
+    });
+
+        FB.api('/me/permissions', function(response) {
+            console.log(JSON.stringify(response));
         });
-    }
+        FB.logout(function(response) {
+            // Person is now logged out
+        });
+}
+
+
+
 </script>
 
 
