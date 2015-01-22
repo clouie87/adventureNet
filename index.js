@@ -155,35 +155,34 @@ passport.use('local-signup', new LocalStrategy(
 ));
 
 //==================FACEBOOK HTTP STUFF ==================//
-//request({
-//	uri: 'https://www.facebook.com/dialog/oauth?client_id=295897893929835&redirect_uri=https://www.facebook.com/connect/login_success.html#access_token=ACCESS_TOKEN'
-//});
-//
-//request({
-//	uri: 'https://graph.facebook.com/oauth/access_token?client_id=295897893929835&redirect_uri=https://www.facebook.com/connect/login_success.html&client_secret=016c48478907f77a428e2dfb5724edf7&code=ACCESS_TOKEN',
-//	method: 'GET'
-//});
 
-//GET (https://graph.facebook.com/oauth/access_token?client_id={app-id}
-//	&redirect_uri={redirect-uri}
-//	&client_secret={app-secret}
-//	&code={code-parameter}
-//passport.use(new FacebookStrategy({
-//		clientID: FACEBOOK_APP_ID,
-//		clientSecret: FACEBOOK_APP_SECRET,
-//		callbackURL: 'http://localhost:3000/auth/facebook/callback'
-//
-//	},
-//
-//	function(accessToken, refreshToken, profile, done) {
-//		console.log(profile);
-//	}
+
+passport.use(new FacebookStrategy({
+		clientID: FACEBOOK_APP_ID,
+		clientSecret: FACEBOOK_APP_SECRET,
+		callbackURL: 'http://localhost:3000/auth/facebook/callback'
+
+	},
+
+	function(accessToken, refreshToken, profile, done) {
+		var user = profile;
+		user.username = user.displayName;
+		user.avatar = "http://graph.facebook.com/" + profile.id + "/picture?width=400&height=400",
+		console.log(profile);
+		console.log(user + " this is the user for Facebook Login!!");
+
+		//req.session.success = 'You are successfully registered and logged in ' + user.name + '!';
+
+		done(null, user);
+        process.nextTick(function(){
+			return done(null, profile);
+		});
 		//User.findOrCreate(profile, function(err, user) {
-	//	if (err) { return done(err); }
-	//	done(null, user);
+		//if (err) { return done(err); }
+		//done(null, user);
 	//});
-	//}
-//));
+	}
+));
 
 //================= ROUTES STUFF ====================//
 
@@ -197,29 +196,18 @@ app.get('/signin', function(req, res){
 	res.render('signin');
 });
 
-////displays our signup page
-//app.get('/homepage', function(req, res){
-//	res.render('homepage');
-//});
+app.get('/auth/facebook',
+	passport.authenticate('facebook'),
+	function(req, res){
+		//request will be redirected to facebook for auth
+	});
 
-//app.get('/auth/facebook', passport.authenticate('facebook'));
-//
-//app.get('/auth/facebook/callback',
-//	passport.authenticate('facebook', { successRedirect: '/',
-//		failureRedirect: '/login' }));
+app.get('/auth/facebook/callback',
+	passport.authenticate('facebook', {failureRedirect: '/login' }),
+	function(req, res) {
+		res.redirect('/')
 
-//app.get('/auth/facebook',
-//	passport.authenticate('facebook'), //{ scope: 'public_profile,email' }
-//);
-
-//GET /oauth/access_token?
-//	client_id=
-//	&client_secret={app-secret}
-//	&grant_type=client_credentials
-
-
-
-
+	});
 
 //sends the request through our local signup strategy, and if successful takes user to homepage, otherwise returns then to signin page
 app.post('/local-reg', passport.authenticate('local-signup', {
